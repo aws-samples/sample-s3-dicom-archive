@@ -1,0 +1,36 @@
+erDiagram
+    PATIENT ||--o{ STUDY : has
+    STUDY ||--o{ SERIES : has
+    SERIES ||--o{ INSTANCE : has
+    INSTANCE ||--|| STORAGE_INDEX : "located by"
+    INSTANCE ||--o| INSTANCEMETADATA : "header"
+    STUDY ||--o| STUDY_STATS : "rolled up"
+
+    PATIENT {
+      bigint patient_pkey PK
+      string datastore_id
+      string patient_id
+    }
+    STUDY {
+      bigint study_pkey PK
+      string studyinstanceuid
+      datetime deleted_at
+    }
+    SERIES {
+      bigint series_pkey PK
+      string seriesinstanceuid
+    }
+    INSTANCE {
+      bigint content_pkey PK
+      string sopinstanceuid
+      string datastore_id
+    }
+    STORAGE_INDEX {
+      string s3_key
+      bigint byte_offset
+    }
+    STUDY_STATS {
+      bigint study_pkey PK
+      int instance_count
+      bigint total_size_bytes
+    }

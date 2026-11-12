@@ -1,0 +1,99 @@
+{
+  "ADMIN": {
+    "name": "Administrator",
+    "username": "test-admin",
+    "email": "test-admin@example.com",
+    "password": "TestAdmin123!",
+    "datastorePrivileges": [
+      {
+        "datastoreId": "*",
+        "canRead": true,
+        "canStore": true,
+        "canUpdate": true,
+        "canDelete": true
+      }
+    ],
+    "virtualFolderPrivileges": [{ "virtualFolderId": "*", "canRead": true, "canStore": true }],
+    "managementPrivileges": {
+      "interfaces": { "canEdit": true, "canDelete": true, "canList": true },
+      "dicomEntities": { "canEdit": true, "canDelete": true, "canList": true },
+      "datastores": { "canEdit": true, "canDelete": true, "canList": true },
+      "locations": { "canEdit": true, "canDelete": true, "canList": true },
+      "routingRules": { "canEdit": true, "canDelete": true, "canList": true },
+      "privilegeGroups": { "canEdit": true, "canDelete": true, "canList": true },
+      "users": { "canEdit": true, "canDelete": true, "canList": true },
+      "auditTrail": { "canEdit": false, "canDelete": false, "canList": true },
+      "statistics": { "canEdit": false, "canDelete": false, "canList": true },
+      "systemMonitor": { "canEdit": false, "canDelete": false, "canList": true },
+      "virtualFolders": { "canCreate": true, "canEdit": true, "canDelete": true, "canList": true },
+      "indexAttributes": { "canEdit": true, "canDelete": true, "canList": true },
+      "analytics": { "canEdit": true, "canDelete": true, "canList": true, "canQuery": true },
+      "processingJobs": { "canRead": true, "canCreate": true, "canRun": true, "canDelete": true }
+    }
+  },
+  "DATA_ACCESS": {
+    "name": "Data Access User",
+    "username": "test-data_access",
+    "email": "test-data-access@example.com",
+    "password": "TestData123!",
+    "datastorePrivileges": [
+      {
+        "datastoreId": "*",
+        "canRead": true,
+        "canStore": true,
+        "canUpdate": true,
+        "canDelete": true
+      }
+    ],
+    "managementPrivileges": {
+      "statistics": { "canEdit": false, "canDelete": false, "canList": true }
+    }
+  },
+  "READ_ONLY": {
+    "name": "Read Only User",
+    "username": "test-read_only",
+    "email": "test-readonly@example.com",
+    "password": "TestReadOnly123!",
+    "datastorePrivileges": [
+      {
+        "datastoreId": "*",
+        "canRead": true,
+        "canStore": false,
+        "canUpdate": false,
+        "canDelete": false
+      }
+    ],
+    "managementPrivileges": {}
+  },
+  "DATASTORE_MANAGER": {
+    "name": "Datastore Manager",
+    "username": "test-datastore_manager",
+    "email": "test-datastore-mgr@example.com",
+    "password": "TestDatastoreMgr123!",
+    "datastorePrivileges": [],
+    "managementPrivileges": {
+      "datastores": { "canEdit": true, "canDelete": true, "canList": true },
+      "statistics": { "canEdit": false, "canDelete": false, "canList": true }
+    }
+  },
+  "SYSTEM_MANAGER": {
+    "name": "System Manager",
+    "username": "test-system_manager",
+    "email": "test-system-mgr@example.com",
+    "password": "TestSystemMgr123!",
+    "datastorePrivileges": [],
+    "managementPrivileges": {
+      "privilegeGroups": { "canEdit": true, "canDelete": true, "canList": true },
+      "users": { "canEdit": true, "canDelete": true, "canList": true },
+      "auditTrail": { "canEdit": false, "canDelete": false, "canList": true }
+    }
+  },
+  "NO_ACCESS": {
+    "name": "No Access User",
+    "username": "test-no_access",
+    "email": "test-no-access@example.com",
+    "password": "TestNoAccess123!",
+    "datastorePrivileges": [],
+    "managementPrivileges": {}
+  }
+}

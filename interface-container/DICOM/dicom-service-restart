@@ -1,0 +1,8 @@
+#!/bin/bash
+# Local dev helper: restart the DIMSE service on :11112.
+# Set CONFIGURATION_API_ENDPOINT (your stack's .../v1/api/config URL) and
+# LOCATION_ID before running; no deployment-specific values are kept here.
+: "${CONFIGURATION_API_ENDPOINT:?set CONFIGURATION_API_ENDPOINT}"
+: "${LOCATION_ID:?set LOCATION_ID}"
+lsof -ti:11112 | xargs kill -9 2>/dev/null
+cd DIMSEtoS3 && source venv/bin/activate && AWS_REGION="${AWS_REGION:-us-east-1}" CONFIGURATION_API_ENDPOINT="$CONFIGURATION_API_ENDPOINT" LOCATION_ID="$LOCATION_ID" LOGLEVEL="${LOGLEVEL:-INFO}" python main.py

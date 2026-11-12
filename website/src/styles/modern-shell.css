@@ -1,0 +1,357 @@
+/*
+ * modern-shell.css — styles for the CUSTOM Modern app shell (ModernShell.tsx).
+ *
+ * Everything is driven by CSS variables. Two variable sets — one on
+ * `.modern-dark`, one on `.modern-light` — are toggled from the shell root
+ * (ThemeContext.customTheme), so a light/dark switch is a single class flip.
+ *
+ * Scope: every rule is prefixed with `.modern-shell` so NONE of this leaks into
+ * the Classic (Cloudscape AppLayout) path, which is never wrapped by this root.
+ * Page CONTENT rendered inside .ms-content is Cloudscape and keeps its own
+ * theming (applyTheme tokens); the shell only paints the chrome + content bg.
+ */
+
+/* ---------------- palettes ---------------- */
+.modern-shell.modern-dark {
+  --bg: #1e2836;
+  --panel: #273244;
+  --panel-2: #303d52;
+  --line: #3a4a60;
+  --ink: #e6edf5;
+  --ink-dim: #9fb0c3;
+  --accent: #3b82f6;
+  --accent-soft: #539fe5;
+  --accent-ink: #ffffff;
+  --active-pill: rgba(59, 130, 246, 0.22);
+  --hover: rgba(159, 176, 195, 0.10);
+  --warning: #ff9900;
+  --menu-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+}
+
+.modern-shell.modern-light {
+  --bg: #f4f6f9;
+  --panel: #ffffff;
+  --panel-2: #f7f9fc;
+  --line: #e3e8ef;
+  --ink: #1b2733;
+  --ink-dim: #5a6b7b;
+  --accent: #2563eb;
+  --accent-soft: #2563eb;
+  --accent-ink: #ffffff;
+  --active-pill: rgba(37, 99, 235, 0.12);
+  --hover: rgba(27, 39, 51, 0.06);
+  --warning: #b45309;
+  --menu-shadow: 0 18px 48px rgba(18, 33, 54, 0.16);
+}
+
+/* ---------------- root layout ---------------- */
+.modern-shell {
+  --topbar-h: 52px;
+  --sidebar-w: 248px;
+  --sidebar-w-collapsed: 64px;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* ---------------- top bar ---------------- */
+.modern-shell .ms-topbar {
+  flex: 0 0 var(--topbar-h);
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 14px;
+  background: var(--panel-2);
+  border-bottom: 1px solid var(--line);
+  z-index: 20;
+}
+.modern-shell .ms-topbar-left,
+.modern-shell .ms-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.modern-shell .ms-title {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+.modern-shell .ms-search-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 10px 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: border-color 0.13s ease, color 0.13s ease;
+}
+.modern-shell .ms-search-pill:hover {
+  border-color: var(--accent-soft);
+  color: var(--ink);
+}
+.modern-shell .ms-search-text { font-size: 13px; }
+.modern-shell .ms-kbd {
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 5px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--ink-dim);
+  background: var(--panel-2);
+}
+.modern-shell .ms-warning {
+  color: var(--warning);
+  font-weight: 700;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.modern-shell .ms-toplink {
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: color 0.13s ease;
+}
+.modern-shell .ms-toplink:hover { color: var(--accent-soft); }
+.modern-shell .ms-version-btn {
+  background: none;
+  border: 0;
+  color: var(--accent-soft);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.modern-shell .ms-version-btn:hover { text-decoration: underline; }
+
+.modern-shell .ms-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: background 0.13s ease, color 0.13s ease;
+}
+.modern-shell .ms-icon-btn:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+/* user menu */
+.modern-shell .ms-usermenu { position: relative; }
+.modern-shell .ms-user-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.13s ease;
+}
+.modern-shell .ms-user-btn:hover { border-color: var(--accent-soft); }
+.modern-shell .ms-user-name { font-size: 13px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.modern-shell .ms-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 168px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--menu-shadow);
+  padding: 5px;
+  z-index: 40;
+}
+.modern-shell .ms-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.modern-shell .ms-menu-item:hover { background: var(--hover); }
+.modern-shell .ms-menu-sep { height: 1px; background: var(--line); margin: 4px 2px; }
+
+/* ---------------- body: sidebar + content ---------------- */
+.modern-shell .ms-body {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+}
+.modern-shell .ms-sidebar {
+  flex: 0 0 var(--sidebar-w);
+  width: var(--sidebar-w);
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+  transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1), flex-basis 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modern-shell.ms-collapsed .ms-sidebar {
+  flex-basis: var(--sidebar-w-collapsed);
+  width: var(--sidebar-w-collapsed);
+}
+.modern-shell .ms-nav-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 0 24px;
+}
+
+/* section headers */
+.modern-shell .ms-section { margin-top: 6px; }
+.modern-shell .ms-section-title {
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-dim);
+  opacity: 0.8;
+  padding: 14px 20px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.modern-shell.ms-collapsed .ms-section-title {
+  font-size: 0;
+  padding: 12px 0 4px;
+}
+.modern-shell.ms-collapsed .ms-section-title::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--line);
+  margin: 0 14px;
+}
+
+/* nav links */
+.modern-shell .ms-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: calc(100% - 16px);
+  margin: 2px 8px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink-dim);
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.13s ease, color 0.13s ease;
+}
+.modern-shell .ms-nav-link:hover { background: var(--hover); color: var(--ink); }
+.modern-shell .ms-nav-link.ms-active {
+  background: var(--active-pill);
+  color: var(--ink);
+  font-weight: 600;
+}
+.modern-shell .ms-nav-link.ms-active::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+.modern-shell .ms-nav-link .ms-ic { flex: 0 0 18px; opacity: 0.92; }
+.modern-shell .ms-nav-label {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.modern-shell .ms-nav-link.ms-child { padding-left: 40px; }
+.modern-shell .ms-nav-link.ms-child .ms-ic { display: none; }
+
+/* expandable groups */
+.modern-shell .ms-group-head { width: calc(100% - 16px); }
+.modern-shell .ms-caret {
+  flex: 0 0 14px;
+  transition: transform 0.15s ease;
+  opacity: 0.7;
+}
+.modern-shell .ms-caret.ms-caret-open { transform: rotate(90deg); }
+.modern-shell .ms-group-items { margin: 1px 0 3px; }
+
+/* ---------------- collapsed icon rail ---------------- */
+.modern-shell.ms-collapsed .ms-nav-link {
+  justify-content: center;
+  gap: 0;
+  padding: 9px 0;
+  width: calc(100% - 16px);
+}
+.modern-shell.ms-collapsed .ms-nav-label,
+.modern-shell.ms-collapsed .ms-caret {
+  display: none;
+}
+.modern-shell.ms-collapsed .ms-nav-link.ms-child { padding-left: 0; }
+.modern-shell.ms-collapsed .ms-nav-link.ms-child .ms-ic { display: block; }
+/* hover tooltip in the collapsed rail */
+.modern-shell.ms-collapsed .ms-nav-link:hover::after {
+  content: attr(aria-label);
+  position: absolute;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--panel-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 9px;
+  border-radius: 7px;
+  white-space: nowrap;
+  z-index: 60;
+  box-shadow: var(--menu-shadow);
+  pointer-events: none;
+}
+
+/* ---------------- content region ---------------- */
+.modern-shell .ms-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-y: auto;
+  background: var(--bg);
+}
+.modern-shell .ms-content-inner {
+  padding: 22px 26px 40px;
+  max-width: 100%;
+}
+
+/* collapse-btn only needs the plain menu glyph; nothing extra */
+.modern-shell .ms-collapse-btn { flex: 0 0 auto; }

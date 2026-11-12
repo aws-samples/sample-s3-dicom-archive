@@ -1,0 +1,146 @@
+{
+ "files": {
+  "broken.png": {
+   "contentType": "image/png",
+   "expect": {},
+   "matchesSeeded": null,
+   "modality": "SC"
+  },
+  "burned-in.png": {
+   "contentType": "image/png",
+   "expect": {
+    "birthDate": "19740312",
+    "institution": "Riverside Medical Group",
+    "patientId": "NDV2-44172",
+    "patientName": "QUIGLEY^HARRIET^M",
+    "sex": "F"
+   },
+   "matchesSeeded": "NDV2-44172",
+   "modality": "SC"
+  },
+  "existing-patient.pdf": {
+   "contentType": "application/pdf",
+   "expect": {
+    "accessionNumber": "ACC-NDV2-7781",
+    "birthDate": "19740312",
+    "documentDate": "20260914",
+    "documentTitle": "Cardiology Clinic Letter",
+    "institution": "Riverside Medical Group",
+    "patientId": "NDV2-44172",
+    "patientName": "QUIGLEY^HARRIET^M",
+    "referringPhysician": "BANERJEE^ANIL",
+    "sex": "F"
+   },
+   "matchesSeeded": "NDV2-44172",
+   "modality": "DOC"
+  },
+  "injection.pdf": {
+   "contentType": "application/pdf",
+   "expect": {
+    "birthDate": "19500130",
+    "documentTitle": "Discharge Summary",
+    "institution": "Eastbrook General Hospital",
+    "patientId": "NDV2-90031",
+    "patientName": "PERCIVAL^OTTO",
+    "sex": "M"
+   },
+   "injected": [
+    "ADMIN",
+    "ROOT",
+    "DROP TABLE",
+    "sqlQuery"
+   ],
+   "matchesSeeded": null,
+   "modality": "DOC"
+  },
+  "new-patient.pdf": {
+   "contentType": "application/pdf",
+   "expect": {
+    "accessionNumber": "ACC-NDV2-3305",
+    "birthDate": "19611102",
+    "documentDate": "20260830",
+    "documentTitle": "MRI Lumbar Spine Report",
+    "institution": "Lakeshore Imaging Centre",
+    "patientId": "NDV2-80917",
+    "patientName": "OKONKWO-REYES^BARTHOLOMEW",
+    "referringPhysician": "RAGHAVAN^SUNITA",
+    "sex": "M"
+   },
+   "matchesSeeded": null,
+   "modality": "DOC"
+  },
+  "patient-a.pdf": {
+   "contentType": "application/pdf",
+   "expect": {
+    "birthDate": "19790408",
+    "documentTitle": "Physiotherapy Assessment",
+    "institution": "Harbourview Rehabilitation",
+    "patientId": "NDV2-51001",
+    "patientName": "KOWALSKI^IRENA",
+    "sex": "F"
+   },
+   "matchesSeeded": null,
+   "modality": "DOC"
+  },
+  "patient-b.pdf": {
+   "contentType": "application/pdf",
+   "expect": {
+    "birthDate": "19451219",
+    "documentTitle": "Audiology Report",
+    "institution": "Harbourview Rehabilitation",
+    "patientId": "NDV2-51002",
+    "patientName": "FAIRWEATHER^DESMOND",
+    "sex": "M"
+   },
+   "matchesSeeded": null,
+   "modality": "DOC"
+  },
+  "scanned.pdf": {
+   "contentType": "application/pdf",
+   "expect": {
+    "accessionNumber": "ACC-NDV2-6012",
+    "birthDate": "19880625",
+    "documentDate": "20260722",
+    "documentTitle": "Histopathology Report",
+    "institution": "Northgate Pathology Laboratory",
+    "patientId": "NDV2-66120",
+    "patientName": "DELACROIX-HALE^MARGUERITE",
+    "sex": "F"
+   },
+   "matchesSeeded": null,
+   "modality": "DOC"
+  },
+  "tiny.mp4": {
+   "contentType": "video/mp4",
+   "expect": {},
+   "matchesSeeded": null,
+   "modality": "XC"
+  }
+ },
+ "seeded": [
+  {
+   "birthDate": "19740312",
+   "patientId": "NDV2-44172",
+   "patientName": "QUIGLEY^HARRIET^M",
+   "sex": "F",
+   "studyDate": "20250602",
+   "studyDescription": "NDV2 seed MR brain"
+  },
+  {
+   "birthDate": "19710802",
+   "patientId": "NDV2-44711",
+   "patientName": "QUIGLEY^HAROLD",
+   "sex": "M",
+   "studyDate": "20250410",
+   "studyDescription": "NDV2 seed MR knee"
+  },
+  {
+   "birthDate": "19830117",
+   "patientId": "NDV2-10001",
+   "patientName": "ABERNATHY^COLM",
+   "sex": "M",
+   "studyDate": "20250220",
+   "studyDescription": "NDV2 seed MR spine"
+  }
+ ]
+}

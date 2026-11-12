@@ -1,0 +1,318 @@
+[
+  {
+    "name": "studies/filters-search",
+    "app": "admin",
+    "path": "/admin/",
+    "steps": [
+      {
+        "click": "a:has-text('DICOM Studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "button:has-text('cardiology-archive')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "click": "li:has-text('demo-studies'), [role=option]:has-text('demo-studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "fill": "input[placeholder='Enter Patient Name']",
+        "value": "Compressed"
+      },
+      {
+        "click": "xpath=//button[normalize-space(.)='Search']"
+      },
+      {
+        "sleep": 7000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('demo-studies')",
+        "label": "1"
+      },
+      {
+        "selector": "input[placeholder='Enter Patient Name']",
+        "label": "2"
+      },
+      {
+        "selector": "xpath=//button[normalize-space(.)='Search']",
+        "label": "3"
+      }
+    ]
+  },
+  {
+    "name": "studies/toolbar",
+    "app": "admin",
+    "path": "/admin/",
+    "steps": [
+      {
+        "click": "a:has-text('DICOM Studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "button:has-text('cardiology-archive')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "click": "li:has-text('demo-studies'), [role=option]:has-text('demo-studies')"
+      },
+      {
+        "sleep": 7000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Edit Metadata')",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Delete')",
+        "label": "2"
+      },
+      {
+        "selector": "button:has-text('Run Processing Job')",
+        "label": "3"
+      },
+      {
+        "selector": "button:has-text('Import data')",
+        "label": "4"
+      }
+    ]
+  },
+  {
+    "name": "studies/expanded-study",
+    "app": "admin",
+    "path": "/admin/",
+    "steps": [
+      {
+        "click": "a:has-text('DICOM Studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "button:has-text('cardiology-archive')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "click": "li:has-text('demo-studies'), [role=option]:has-text('demo-studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "button[aria-label='Expand study']"
+      },
+      {
+        "sleep": 7000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button[aria-label='View in OHIF']",
+        "label": "1"
+      },
+      {
+        "selector": "button[aria-label='Collapse study']",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "studies/edit-metadata",
+    "app": "admin",
+    "path": "/admin/",
+    "steps": [
+      {
+        "click": "a:has-text('DICOM Studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "button:has-text('cardiology-archive')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "click": "li:has-text('demo-studies'), [role=option]:has-text('demo-studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "tbody tr.cloudscape-table-row:first-child label"
+      },
+      {
+        "sleep": 1000
+      },
+      {
+        "click": "button:has-text('Edit Metadata')"
+      },
+      {
+        "sleep": 2500
+      }
+    ],
+    "clip": "css=[class*=awsui_dialog], [role=dialog]",
+    "callouts": [
+      {
+        "selector": "text=all instances",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Submit Update')",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "studies/delete-confirm",
+    "app": "admin",
+    "path": "/admin/",
+    "steps": [
+      {
+        "click": "a:has-text('DICOM Studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "button:has-text('cardiology-archive')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "click": "li:has-text('demo-studies'), [role=option]:has-text('demo-studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "tbody tr.cloudscape-table-row:first-child label"
+      },
+      {
+        "sleep": 1000
+      },
+      {
+        "click": "button:has-text('Delete (')"
+      },
+      {
+        "sleep": 2000
+      }
+    ],
+    "clip": "css=[class*=awsui_dialog], [role=dialog]",
+    "callouts": [
+      {
+        "selector": "text=Warning:",
+        "label": "1"
+      },
+      {
+        "selector": "[role=dialog] button:has-text('Delete')",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "data-user-view/sidebar",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      {
+        "sleep": 6000
+      }
+    ],
+    "clip": "css=aside",
+    "callouts": [
+      {
+        "selector": "text=Storages",
+        "label": "1"
+      },
+      {
+        "selector": "text=Virtual folders",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "data-user-view/browse",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      {
+        "sleep": 6000
+      },
+      {
+        "click": "nav[aria-label='Data sources'] button:has-text('demo-studies')"
+      },
+      {
+        "sleep": 7000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "input[placeholder='Search...']",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Tools')",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "data-user-view/series-panel",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      {
+        "sleep": 6000
+      },
+      {
+        "click": "nav[aria-label='Data sources'] button:has-text('demo-studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "tbody tr:first-child td:first-child input[type=checkbox], tbody tr:first-child td:first-child label"
+      },
+      {
+        "sleep": 8000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Study details",
+        "label": "1"
+      }
+    ]
+  },
+  {
+    "name": "studies/viewer",
+    "app": "none",
+    "_note": "OHIF opens in a new tab via window.open; capture it directly. Substitute <access-token> with a fresh token: an admin access token. Datastore id and a CT study UID are from demo-studies.",
+    "path": "/ohif/viewer/1764e3be-72e9-4cbb-9d6a-e16bf512be2e?StudyInstanceUIDs=1.2.826.0.1.3680043.8.498.66709524036012423560772343712462279651&token=<access-token>",
+    "settle": 3000,
+    "steps": [
+      {
+        "sleep": 13000
+      }
+    ]
+  }
+]

@@ -1,0 +1,3 @@
+# cdk-infrastructure/.gitignore ignores every build/ dir; this one holds committed
+# VolView build helpers (patches, licence gate, pinned licence-checker lockfile).
+!/build/

@@ -1,0 +1,22 @@
+{
+  "stackPrefix": "myarchive",
+  "deploymentName": "DICOM Archive",
+  "enableDicomService": true,
+  "mfa": true,
+  "adminEmail": "admin@example.com",
+  "viewers": {
+    "ohif": true,
+    "slim": true,
+    "volview": true
+  },
+  "debugUi": false,
+  "devAuthMode": "enforce",
+  "exportFeature": true,
+  "dicomWebService": true,
+  "networkMode": {
+    "mode": "vpc",
+    "dnsName": "myarchive.internal.test",
+    "certArn": "",
+    "existingVpcId": ""
+  }
+}

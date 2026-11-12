@@ -1,0 +1,9 @@
+{
+  "name": "volview-license-checker",
+  "private": true,
+  "description": "Pinned licence scanner for the VolView CodeBuild licence gate (installed with npm ci).",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "license-checker-rseidelsohn": "4.4.2"
+  }
+}

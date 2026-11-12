@@ -1,0 +1,116 @@
+[
+  {
+    "category": "Datastores",
+    "endpoints": [
+      { "method": "GET", "path": "/datastores", "requiresDatastoreRead": true, "requiresManagement": "datastores.canList" },
+      { "method": "POST", "path": "/datastores", "requiresManagement": "datastores.canEdit" },
+      { "method": "GET", "path": "/datastores/{id}", "requiresDatastoreRead": true, "requiresManagement": "datastores.canList" },
+      { "method": "PUT", "path": "/datastores/{id}", "requiresManagement": "datastores.canEdit" },
+      { "method": "DELETE", "path": "/datastores/{id}", "requiresManagement": "datastores.canDelete" },
+      { "method": "GET", "path": "/datastores/statistics", "requiresDatastoreRead": true, "requiresManagement": "datastores.canList" }
+    ]
+  },
+  {
+    "category": "Import Jobs",
+    "endpoints": [
+      { "method": "GET", "path": "/import-jobs", "requiresDatastoreRead": true, "requiresDatastoreStore": true },
+      { "method": "POST", "path": "/import-jobs", "requiresDatastoreStore": true },
+      { "method": "GET", "path": "/import-jobs/{id}", "requiresDatastoreRead": true, "requiresDatastoreStore": true }
+    ]
+  },
+  {
+    "category": "DICOM Interfaces",
+    "endpoints": [
+      { "method": "GET", "path": "/dicom-interfaces", "requiresImplicit": "interfaces" },
+      { "method": "POST", "path": "/dicom-interfaces", "requiresManagement": "interfaces.canEdit" },
+      { "method": "GET", "path": "/dicom-interfaces/{id}", "requiresImplicit": "interfaces" },
+      { "method": "PUT", "path": "/dicom-interfaces/{id}", "requiresManagement": "interfaces.canEdit" },
+      { "method": "DELETE", "path": "/dicom-interfaces/{id}", "requiresManagement": "interfaces.canDelete" }
+    ]
+  },
+  {
+    "category": "DICOM Entities",
+    "endpoints": [
+      { "method": "GET", "path": "/dicom-entities", "requiresManagement": "dicomEntities.canList" },
+      { "method": "POST", "path": "/dicom-entities", "requiresManagement": "dicomEntities.canEdit" },
+      { "method": "GET", "path": "/dicom-entities/{id}", "requiresManagement": "dicomEntities.canList" },
+      { "method": "PUT", "path": "/dicom-entities/{id}", "requiresManagement": "dicomEntities.canEdit" },
+      { "method": "DELETE", "path": "/dicom-entities/{id}", "requiresManagement": "dicomEntities.canDelete" }
+    ]
+  },
+  {
+    "category": "Locations",
+    "endpoints": [
+      { "method": "GET", "path": "/locations", "requiresImplicit": "locations" },
+      { "method": "POST", "path": "/locations", "requiresImplicit": "locations" },
+      { "method": "GET", "path": "/locations/{id}", "requiresImplicit": "locations" },
+      { "method": "PUT", "path": "/locations/{id}", "requiresImplicit": "locations" },
+      { "method": "DELETE", "path": "/locations/{id}", "requiresImplicit": "locations" }
+    ]
+  },
+  {
+    "category": "Routing Rules",
+    "endpoints": [
+      { "method": "GET", "path": "/routing-rules", "requiresManagement": "routingRules.canList" },
+      { "method": "POST", "path": "/routing-rules", "requiresManagement": "routingRules.canEdit" },
+      { "method": "PUT", "path": "/routing-rules/{id}", "requiresManagement": "routingRules.canEdit" },
+      { "method": "DELETE", "path": "/routing-rules/{id}", "requiresManagement": "routingRules.canDelete" }
+    ]
+  },
+  {
+    "category": "Interface Servers",
+    "endpoints": [
+      { "method": "GET", "path": "/interface-servers", "requiresImplicit": "interfaces" }
+    ]
+  },
+  {
+    "category": "Privilege Groups",
+    "endpoints": [
+      { "method": "GET", "path": "/privilege-groups", "requiresManagement": "privilegeGroups.canList|privilegeGroups.canEdit" },
+      { "method": "POST", "path": "/privilege-groups", "requiresManagement": "privilegeGroups.canEdit" },
+      { "method": "GET", "path": "/privilege-groups/{id}", "requiresManagement": "privilegeGroups.canList|privilegeGroups.canEdit" },
+      { "method": "PUT", "path": "/privilege-groups/{id}", "requiresManagement": "privilegeGroups.canEdit" },
+      { "method": "DELETE", "path": "/privilege-groups/{id}", "requiresManagement": "privilegeGroups.canDelete" }
+    ]
+  },
+  {
+    "category": "Users",
+    "endpoints": [
+      { "method": "GET", "path": "/users", "requiresManagement": "users.canList|users.canEdit" },
+      { "method": "POST", "path": "/users", "requiresManagement": "users.canEdit" },
+      { "method": "GET", "path": "/users/{id}", "requiresManagement": "users.canList|users.canEdit" },
+      { "method": "PUT", "path": "/users/{id}", "requiresManagement": "users.canEdit" },
+      { "method": "DELETE", "path": "/users/{id}", "requiresManagement": "users.canDelete" }
+    ]
+  },
+  {
+    "category": "Audit",
+    "endpoints": [
+      { "method": "GET", "path": "/audit", "requiresManagement": "auditTrail.canList" }
+    ]
+  },
+  {
+    "category": "Dashboard & Statistics",
+    "endpoints": [
+      { "method": "GET", "path": "/dashboard/stats", "requiresManagement": "statistics.canList" },
+      { "method": "GET", "path": "/dashboard/modality", "requiresManagement": "statistics.canList" },
+      { "method": "GET", "path": "/aws-resources", "requiresManagement": "statistics.canList" }
+    ]
+  },
+  {
+    "category": "System Monitor",
+    "endpoints": [
+      { "method": "GET", "path": "/system-monitor", "requiresManagement": "systemMonitor.canList" }
+    ]
+  },
+  {
+    "category": "Virtual Folders",
+    "endpoints": [
+      { "method": "GET", "path": "/virtual-folders", "requiresManagement": "virtualFolders.canList" },
+      { "method": "POST", "path": "/virtual-folders", "requiresManagement": "virtualFolders.canEdit" },
+      { "method": "GET", "path": "/virtual-folders/{id}", "requiresManagement": "virtualFolders.canList" },
+      { "method": "PUT", "path": "/virtual-folders/{id}", "requiresManagement": "virtualFolders.canEdit" },
+      { "method": "DELETE", "path": "/virtual-folders/{id}", "requiresManagement": "virtualFolders.canDelete" }
+    ]
+  }
+]

@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Prevent layout shifts that can trigger ResizeObserver errors */
+* {
+  box-sizing: border-box;
+}
+
+/* Stabilize CloudScape expandable components */
+.awsui-expandable-section,
+.awsui-side-navigation,
+.awsui-app-layout {
+  contain: layout style;
+}
+
+/* Smooth transitions for expandable elements */
+.awsui-expandable-section-content,
+.awsui-side-navigation-expandable-link-group {
+  transition: height 0.2s ease-in-out;
+  will-change: height;
+}
+
+/* Prevent content jumping during expansion */
+.awsui-side-navigation-expandable-link-group-expanded {
+  overflow: hidden;
+}
+
+/* Optimize rendering performance */
+.awsui-table,
+.awsui-cards {
+  contain: layout style;
+}
+
+/* Reduce layout thrashing */
+.awsui-app-layout-content {
+  contain: layout;
+}

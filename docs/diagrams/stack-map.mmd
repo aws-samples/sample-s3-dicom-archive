@@ -1,0 +1,43 @@
+block-beta
+  columns 1
+
+  block:optional["Feature-flagged (config.json)"]:1
+    columns 2
+    dicomsvc["DicomServiceStack — enableDicomService"]
+    dwebsvc["DicomWebServiceStack — dicomWebService"]
+    vf["VirtualFolderStack — virtualFolderFeature"]
+    analytics["AnalyticsStack — analyticsFeature"]
+    export["ExportStack — exportFeature"]
+    ohifs["OhifViewerStack"]
+    slims["SlimViewerStack"]
+    volviews["VolviewViewerStack"]
+    interop["InteroperabilityStack (HL7)"]
+    importp["ImportPipelineStack"]
+    importc["ImportCleanupPipelineStack"]
+    procjobs["ProcessingJobsStack"]
+    dsflow["DatastoreWorkflowStack"]
+    datauser["DataUserUiStack"]
+    dash["DashboardStack"]
+    space
+  end
+
+  block:foundation["Foundation (always deployed)"]:1
+    columns 2
+    net["NetworkStack (VPC)"]
+    db["DatabaseStack — Aurora MySQL 8.4.8 + RDS Proxy"]
+    auth["AuthStack — Cognito + authorizer"]
+    api["ApiStack (REST)"]
+    audit["AuditStack"]
+    config["ConfigServiceStack"]
+    sysmgmt["SystemManagementStack"]
+    datamgmt["DataManagementStack"]
+    uihost["UiHostingStack"]
+    cicd["CicdStack"]
+  end
+
+  main["MainStack (root)"]
+
+  optional --> main
+  foundation --> main
+
+  style main fill:#E3F2FD,stroke:#1565C0

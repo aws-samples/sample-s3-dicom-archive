@@ -1,0 +1,7 @@
+{
+  "name": "statistics-snapshot",
+  "version": "1.0.0",
+  "description": "Hourly statistics snapshot Lambda",
+  "main": "index.js",
+  "dependencies": {}
+}

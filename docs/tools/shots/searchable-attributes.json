@@ -1,0 +1,55 @@
+[
+  {
+    "name": "searchable-attributes/structure-tab",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Searchable')"},
+      {"sleep": 4000}
+    ],
+    "callouts": [
+      {"selector": "button:has-text('Storage structure')", "label": "1"},
+      {"selector": "button:has-text('Virtual-folder structure')", "label": "2"},
+      {"selector": "button:has-text('Add attribute')", "label": "3"}
+    ],
+    "clip": "css=#root"
+  },
+  {
+    "name": "searchable-attributes/add-attribute",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Searchable')"},
+      {"sleep": 3500},
+      {"click": "button:has-text('Add attribute')"},
+      {"sleep": 1200}
+    ],
+    "callouts": [
+      {"selector": "input[placeholder^='e.g. body_part']", "label": "1"},
+      {"selector": "text=Create a database index on this column", "label": "2"}
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "searchable-attributes/deid-profiles",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Searchable')"},
+      {"sleep": 3500},
+      {"click": "button:has-text('Virtual-folder structure')"},
+      {"sleep": 1500},
+      {"click": "button:has-text('Select a virtual folder')"},
+      {"sleep": 1000},
+      {"click": "text=Lung CT research cohort"},
+      {"sleep": 1800},
+      {"click": "[role=tab]:has-text('De-id Profiles')"},
+      {"sleep": 2000}
+    ],
+    "callouts": [
+      {"selector": "[role=tab]:has-text('De-id Profiles')", "label": "1"},
+      {"selector": "button:has-text('Create profile')", "label": "2"}
+    ],
+    "clip": "css=#root"
+  }
+]

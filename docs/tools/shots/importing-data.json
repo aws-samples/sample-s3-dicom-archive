@@ -1,0 +1,67 @@
+[
+  {
+    "name": "importing-data/import-dicom-tab",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Import')"},
+      {"sleep": 4500}
+    ],
+    "callouts": [
+      {"selector": "[role=tab]:has-text('DICOM files')", "label": "1"},
+      {"selector": "[role=tab]:has-text('Non-DICOM files')", "label": "2"},
+      {"selector": "[role=tab]:has-text('Jobs')", "label": "3"},
+      {"selector": "button:has-text('Upload DICOM files')", "label": "4"}
+    ],
+    "clip": "css=#root"
+  },
+  {
+    "name": "importing-data/upload-dialog",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Import')"},
+      {"sleep": 4000},
+      {"click": "button:has-text('Upload DICOM files')"},
+      {"sleep": 1500}
+    ],
+    "callouts": [
+      {"selector": "text=Drag and drop DICOM files or folders here", "label": "1"},
+      {"selector": "text=Maximum 5000 files", "label": "2"}
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "importing-data/non-dicom-tab",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Import')"},
+      {"sleep": 4000},
+      {"click": "[role=tab]:has-text('Non-DICOM files')"},
+      {"sleep": 3000}
+    ],
+    "callouts": [
+      {"selector": "text=Select Storage", "label": "1"},
+      {"selector": "button:has-text('Create New Patient')", "label": "2"}
+    ],
+    "clip": "css=#root"
+  },
+  {
+    "name": "importing-data/jobs-tab",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Import')"},
+      {"sleep": 4000},
+      {"click": "[role=tab]:has-text('Jobs')"},
+      {"sleep": 4000}
+    ],
+    "callouts": [
+      {"selector": "text=Filters", "label": "1"},
+      {"selector": "th:has-text('Status')", "label": "2"},
+      {"selector": "th:has-text('Type')", "label": "3"}
+    ],
+    "clip": "css=#root"
+  }
+]

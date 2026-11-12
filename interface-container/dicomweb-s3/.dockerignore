@@ -1,0 +1,22 @@
+# The Dockerfile copies only requirements.txt, build/license_check.py and *.py, so this file is about the
+# build *context*: everything below would otherwise be uploaded to the builder on
+# every `cdk deploy`, and the test suite plus a local venv dwarf the source.
+tests/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.md
+venv/
+.venv/
+env/
+.env
+.git/
+.gitignore
+.coverage
+htmlcov/
+*.log
+.DS_Store

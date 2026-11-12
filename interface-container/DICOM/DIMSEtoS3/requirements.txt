@@ -1,0 +1,9 @@
+pydicom==3.0.2
+boto3==1.43.25
+pynetdicom==3.0.4
+sqs-extended-client==0.0.11
+requests==2.34.2
+botocore==1.43.25
+iam_rolesanywhere_session==2.3.0
+cryptography==50.0.2
+pyzipper==0.3.6

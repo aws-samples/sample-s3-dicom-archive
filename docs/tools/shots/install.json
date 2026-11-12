@@ -1,0 +1,231 @@
+[
+  {
+    "name": "install/login",
+    "path": "/admin/",
+    "app": "none",
+    "steps": [
+      {
+        "sleep": 3500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "input[type=\"text\"], input[name=\"username\"]",
+        "label": "1"
+      },
+      {
+        "selector": "input[type=\"password\"]",
+        "label": "2"
+      },
+      {
+        "selector": "button[type=\"submit\"], button:has-text(\"Sign in\")",
+        "label": "3"
+      }
+    ],
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  {
+    "name": "getting-started/dashboard",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "wait": "text=System Overview"
+      },
+      {
+        "sleep": 3500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=System Overview",
+        "label": "1"
+      },
+      {
+        "selector": "text=Series Distribution by Modality",
+        "label": "2"
+      },
+      {
+        "selector": "text=Studies per Datastore",
+        "label": "3"
+      }
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "name": "getting-started/sidebar",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "wait": "text=System Overview"
+      },
+      {
+        "sleep": 2500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Data Management",
+        "label": "1"
+      },
+      {
+        "selector": "text=Configuration",
+        "label": "2"
+      },
+      {
+        "selector": "text=Management >> nth=1",
+        "label": "3"
+      },
+      {
+        "selector": "text=System >> nth=0",
+        "label": "4"
+      },
+      {
+        "selector": "text=Debugging",
+        "label": "5"
+      }
+    ],
+    "clip": "css=nav",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  {
+    "name": "getting-started/topbar",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "wait": "text=System Overview"
+      },
+      {
+        "sleep": 2500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text(\"Search\")",
+        "label": "1"
+      },
+      {
+        "selector": "text=Not for Diagnosis",
+        "label": "2"
+      },
+      {
+        "selector": "a:has-text(\"Data User View\")",
+        "label": "3"
+      },
+      {
+        "selector": "button:has-text(\"v0.40\")",
+        "label": "4"
+      },
+      {
+        "selector": "button:has-text(\"admin\")",
+        "label": "5"
+      }
+    ],
+    "clip": "css=header",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "name": "getting-started/command-palette",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "wait": "text=System Overview"
+      },
+      {
+        "sleep": 2000
+      },
+      {
+        "click": "button:has-text(\"Search\")"
+      },
+      {
+        "sleep": 1500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "input[placeholder*=\"Jump to\"], input[placeholder*=\"Search\"]",
+        "label": "1"
+      }
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "name": "getting-started/user-menu",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "wait": "text=System Overview"
+      },
+      {
+        "sleep": 2000
+      },
+      {
+        "click": "button:has-text(\"admin\")"
+      },
+      {
+        "sleep": 1200
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "[role=menuitem]:has-text(\"Profile\")",
+        "label": "1"
+      },
+      {
+        "selector": "[role=menuitem]:has-text(\"Preferences\")",
+        "label": "2"
+      },
+      {
+        "selector": "[role=menuitem]:has-text(\"Sign out\")",
+        "label": "3"
+      }
+    ],
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    }
+  },
+  {
+    "name": "install/version-history",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "wait": "text=System Overview"
+      },
+      {
+        "sleep": 2000
+      },
+      {
+        "click": "button:has-text(\"v0.40\")"
+      },
+      {
+        "sleep": 2000
+      }
+    ],
+    "callouts": [],
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    }
+  }
+]

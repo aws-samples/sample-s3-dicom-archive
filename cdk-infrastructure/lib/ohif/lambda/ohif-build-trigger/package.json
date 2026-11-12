@@ -1,0 +1,8 @@
+{
+  "name": "ohif-build-trigger",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-codebuild": "3.929.0"
+  }
+}

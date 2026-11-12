@@ -1,0 +1,128 @@
+[
+  {
+    "name": "data-user-view/sign-in",
+    "app": "none",
+    "path": "/data-user/",
+    "steps": [
+      { "sleep": 4000 }
+    ],
+    "clip": "css=[class*=awsui_root], [role=main], body",
+    "callouts": [
+      { "selector": "input[placeholder='Enter username']", "label": "1" },
+      { "selector": "input[placeholder='Enter password']", "label": "2" },
+      { "selector": "button:has-text('Sign In')", "label": "3" },
+      { "selector": "button:has-text('Forgot Password')", "label": "4" }
+    ]
+  },
+  {
+    "name": "data-user-view/sidebar-admin",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      { "sleep": 6000 }
+    ],
+    "clip": "css=aside",
+    "callouts": [
+      { "selector": "text=Storages", "label": "1" },
+      { "selector": "text=Virtual folders", "label": "2" },
+      { "selector": "nav[aria-label='Data sources'] button:has-text('Lung CT research cohort')", "label": "3" }
+    ]
+  },
+  {
+    "name": "data-user-view/sidebar-jane",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      { "sleep": 6000 }
+    ],
+    "clip": "css=aside",
+    "callouts": [
+      { "selector": "nav[aria-label='Data sources'] button:has-text('demo-studies')", "label": "1" },
+      { "selector": "nav[aria-label='Data sources'] button:has-text('Lung CT research cohort')", "label": "2" }
+    ]
+  },
+  {
+    "name": "data-user-view/search-results",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      { "sleep": 6000 },
+      { "click": "nav[aria-label='Data sources'] button:has-text('demo-studies')" },
+      { "sleep": 8000 },
+      { "fill": "input[placeholder='CT, MR, US...']", "value": "CT" },
+      { "click": "xpath=//button[normalize-space(.)='Search']" },
+      { "sleep": 8000 }
+    ],
+    "callouts": [
+      { "selector": "input[placeholder='CT, MR, US...']", "label": "1" },
+      { "selector": "xpath=//button[normalize-space(.)='Search']", "label": "2" },
+      { "selector": "button:has-text('Clear')", "label": "3" },
+      { "selector": "button:has-text('Tools')", "label": "4" }
+    ]
+  },
+  {
+    "name": "data-user-view/tools-menu",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      { "sleep": 6000 },
+      { "click": "nav[aria-label='Data sources'] button:has-text('demo-studies')" },
+      { "sleep": 8000 },
+      { "click": "tbody tr:first-child td:first-child label, tbody tr:first-child td:first-child input[type=checkbox]" },
+      { "sleep": 2000 },
+      { "click": "button:has-text('Tools')" },
+      { "sleep": 1500 }
+    ],
+    "callouts": [
+      { "selector": "button:has-text('Selection')", "label": "1" },
+      { "selector": "button:has-text('Tools')", "label": "2" },
+      { "selector": "text=OHIF Viewer", "label": "3" }
+    ]
+  },
+  {
+    "name": "data-user-view/study-details",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      { "sleep": 6000 },
+      { "click": "nav[aria-label='Data sources'] button:has-text('demo-studies')" },
+      { "sleep": 8000 },
+      { "click": "tbody tr:first-child td:first-child label, tbody tr:first-child td:first-child input[type=checkbox]" },
+      { "sleep": 9000 }
+    ],
+    "callouts": [
+      { "selector": "text=Study details", "label": "1" }
+    ]
+  },
+  {
+    "name": "data-user-view/deidentified-folder",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      { "sleep": 6000 },
+      { "click": "nav[aria-label='Data sources'] button:has-text('Lung CT research cohort')" },
+      { "sleep": 9000 }
+    ],
+    "callouts": [
+      { "selector": "nav[aria-label='Data sources'] button:has-text('Lung CT research cohort')", "label": "1" },
+      { "selector": "tbody tr:first-child td:nth-child(3)", "label": "2" }
+    ]
+  },
+  {
+    "name": "data-user-view/preferences",
+    "app": "data-user",
+    "path": "/data-user/",
+    "steps": [
+      { "sleep": 6000 },
+      { "click": "button[aria-label='User menu']" },
+      { "sleep": 1200 },
+      { "click": "text=Preferences" },
+      { "sleep": 2500 }
+    ],
+    "clip": "css=[class*=awsui_dialog], [role=dialog]",
+    "callouts": [
+      { "selector": "text=Theme", "label": "1" },
+      { "selector": "text=Default app per modality", "label": "2" }
+    ]
+  }
+]

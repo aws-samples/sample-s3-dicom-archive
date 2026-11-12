@@ -1,0 +1,13 @@
+graph LR
+    classDef proc fill:#F3E5F5,stroke:#8E24AA,color:#4A148C;
+    classDef data fill:#E8F5E9,stroke:#2E7D32,color:#1B5E20;
+
+    assign["Assign content to<br/>virtual folder"]:::proc
+    q["vf-assign-consumer /<br/>vf-deid-consumer (SQS)"]:::proc
+    vfdb["Per-VF database<br/>vf_&lt;32hex&gt;"]:::data
+    deid["On-the-fly de-id<br/>metadata rewrite"]:::proc
+    view["Viewers read VF<br/>via DICOMweb-S3"]
+
+    assign --> q --> vfdb
+    q --> deid --> vfdb
+    vfdb --> view

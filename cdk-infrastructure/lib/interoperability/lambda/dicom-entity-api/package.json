@@ -1,0 +1,9 @@
+{
+  "name": "dicom-entity-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-rds-data": "3.929.0",
+    "@aws-sdk/client-secretsmanager": "3.929.0"
+  }
+}

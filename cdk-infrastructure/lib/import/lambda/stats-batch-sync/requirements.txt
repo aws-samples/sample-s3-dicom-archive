@@ -1,0 +1,3 @@
+# stats-batch-sync needs only the MySQL driver over the RDS Proxy; boto3 comes
+# with the Lambda runtime. Pin matches the s3-ingest layer.
+PyMySQL==1.1.3

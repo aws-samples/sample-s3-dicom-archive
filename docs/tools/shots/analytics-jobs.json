@@ -1,0 +1,411 @@
+[
+  {
+    "name": "analytics/overview",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Analytics')"
+      },
+      {
+        "sleep": 4000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "a:has-text('Analytics')",
+        "label": "1"
+      },
+      {
+        "selector": "text=Storages or virtual folders",
+        "label": "2"
+      },
+      {
+        "selector": "text=AI Assistant",
+        "label": "3"
+      }
+    ]
+  },
+  {
+    "name": "analytics/select-index",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Analytics')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "text=Select one or more storages or virtual folders"
+      },
+      {
+        "sleep": 1500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Select one or more storages or virtual folders",
+        "label": "1"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "analytics/ask-question",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Analytics')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "text=Select one or more storages or virtual folders"
+      },
+      {
+        "sleep": 1200
+      },
+      {
+        "click": "text=demo-studies"
+      },
+      {
+        "press": "Escape"
+      },
+      {
+        "sleep": 1000
+      },
+      {
+        "fill": "textarea[placeholder*='Ask a question']",
+        "value": "How many CT series are there per study?"
+      },
+      {
+        "sleep": 500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "textarea[placeholder*='Ask a question']",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Send')",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "analytics/results",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Analytics')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "text=Select one or more storages or virtual folders"
+      },
+      {
+        "sleep": 1200
+      },
+      {
+        "click": "text=demo-studies"
+      },
+      {
+        "press": "Escape"
+      },
+      {
+        "sleep": 1000
+      },
+      {
+        "fill": "textarea[placeholder*='Ask a question']",
+        "value": "How many CT series are there per study?"
+      },
+      {
+        "click": "button:has-text('Send')"
+      },
+      {
+        "wait": "text=Completed"
+      },
+      {
+        "sleep": 2000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": ".sql-editor-textarea",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Run Query')",
+        "label": "2"
+      },
+      {
+        "selector": "text=Completed",
+        "label": "3"
+      }
+    ]
+  },
+  {
+    "name": "analytics/export-actions",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Analytics')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "text=Select one or more storages or virtual folders"
+      },
+      {
+        "sleep": 1200
+      },
+      {
+        "click": "text=demo-studies"
+      },
+      {
+        "press": "Escape"
+      },
+      {
+        "sleep": 1000
+      },
+      {
+        "fill": ".sql-editor-textarea",
+        "value": "SELECT st.datastore_id, se.modality, se.seriesinstanceuid AS series_instance_uid, se.seriesdescription FROM series se JOIN study st ON se.study_pkey = st.study_pkey WHERE se.modality = 'CT'"
+      },
+      {
+        "click": "button:has-text('Run Query')"
+      },
+      {
+        "wait": "text=Completed"
+      },
+      {
+        "sleep": 1500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Add to Virtual Folder')",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Run Processing Job')",
+        "label": "2"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "analytics/tables",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Analytics')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "text=Select one or more storages or virtual folders"
+      },
+      {
+        "sleep": 1200
+      },
+      {
+        "click": "text=demo-studies"
+      },
+      {
+        "press": "Escape"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "text=Tables and columns"
+      },
+      {
+        "sleep": 800
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "processing-jobs/overview",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Processing Jobs')"
+      },
+      {
+        "sleep": 4000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "a:has-text('Processing Jobs')",
+        "label": "1"
+      },
+      {
+        "selector": "text=Available Jobs",
+        "label": "2"
+      },
+      {
+        "selector": "text=Job Executions",
+        "label": "3"
+      }
+    ]
+  },
+  {
+    "name": "processing-jobs/plugins-panel",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Processing Jobs')"
+      },
+      {
+        "sleep": 4000
+      },
+      {
+        "scroll": "text=Container images registered"
+      },
+      {
+        "sleep": 800
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Register plugin')",
+        "label": "1"
+      },
+      {
+        "selector": "text=DICOM to NIfTI",
+        "label": "2"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "processing-jobs/register",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Processing Jobs')"
+      },
+      {
+        "sleep": 4000
+      },
+      {
+        "click": "button:has-text('Register plugin')"
+      },
+      {
+        "sleep": 1500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "textarea",
+        "label": "1"
+      },
+      {
+        "selector": "text=Container contract",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "processing-jobs/run-from-studies",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('DICOM Studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "button:has-text('cardiology-archive')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "click": "li:has-text('demo-studies'), [role=option]:has-text('demo-studies')"
+      },
+      {
+        "sleep": 7000
+      },
+      {
+        "click": "tbody tr.cloudscape-table-row:first-child label"
+      },
+      {
+        "sleep": 1000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "tbody tr.cloudscape-table-row:first-child label",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Run Processing Job')",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "processing-jobs/schedules",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Job Schedules')"
+      },
+      {
+        "sleep": 4000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "a:has-text('Job Schedules')",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Create schedule')",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "processing-jobs/schedule-create",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Job Schedules')"
+      },
+      {
+        "sleep": 3500
+      },
+      {
+        "click": "button:has-text('Create schedule')"
+      },
+      {
+        "sleep": 1500
+      }
+    ]
+  }
+]

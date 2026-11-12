@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  dimse-service:
+    image: {{DOCKER_IMAGE}}
+    container_name: dicom-archive-dimse-service
+    restart: unless-stopped
+    ports:
+      - "${DICOM_PORT}:11112"
+      - "${STATUS_PORT}:8080"
+    volumes:
+      - ./config:/app/config:ro
+      - ./logs:/app/logs
+      - dimse-temp:/app/in
+    environment:
+      - SCP_PORT=11112
+      - STATUS_PORT=8080
+      - LOGLEVEL=${LOG_LEVEL:-WARNING}
+      - THREADCOUNT=${THREAD_COUNT:-0}
+      - S3_TRANSFER_ACCELERATION=false
+      - STORAGE_THROTTLE=1000
+      - STORAGE_OOR=100
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - dimse-network
+
+volumes:
+  dimse-temp:
+    driver: local
+
+networks:
+  dimse-network:
+    driver: bridge

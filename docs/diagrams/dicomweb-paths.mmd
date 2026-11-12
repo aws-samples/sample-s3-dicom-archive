@@ -1,0 +1,25 @@
+graph TB
+    classDef read fill:#E8F5E9,stroke:#2E7D32,color:#1B5E20;
+    classDef write fill:#FFEBEE,stroke:#C62828,color:#B71C1C;
+
+    client["Browser / viewer"]
+    mw["auth_middleware<br/>token → identity, tenancy check"]
+
+    qido["QIDO-RS (search)"]:::read
+    wado["WADO-RS (ranged GET)"]:::read
+    dl["Download (privilege-gated)"]:::read
+    stow["STOW-RS (store)"]:::write
+    del["DELETE study/series/instance"]:::write
+
+    gate{"access_level<br/>writable?"}
+
+    client --> mw
+    mw --> qido
+    mw --> wado
+    mw --> dl
+    mw --> stow
+    mw --> del
+    stow --> gate
+    del --> gate
+    gate -->|yes| ingestlambda["invoke ingest lambda<br/>(synchronous index)"]
+    gate -->|no / read-only storage| refuse["refuse (defense in depth)"]

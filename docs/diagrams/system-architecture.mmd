@@ -1,0 +1,46 @@
+graph TB
+    classDef edge fill:#E3F2FD,stroke:#1565C0,color:#0D47A1;
+    classDef svc fill:#FFF3E0,stroke:#EF6C00,color:#E65100;
+    classDef compute fill:#F3E5F5,stroke:#8E24AA,color:#4A148C;
+    classDef data fill:#E8F5E9,stroke:#2E7D32,color:#1B5E20;
+
+    admin["Clinician / Admin<br/>(browser)"]
+    dicom["DICOM client<br/>C-STORE / C-FIND / C-MOVE / C-GET"]
+    hl7src["HIS / RIS<br/>(HL7 v2 over MLLP)"]
+
+    cf["CloudFront"]:::edge
+    cognito["Cognito<br/>User Pool + MFA"]:::edge
+    apigw["API Gateway<br/>REST + Lambda authorizer"]:::edge
+
+    dimse["DIMSE service<br/>(Fargate, NLB TLS)"]:::svc
+    dweb["DICOMweb-S3<br/>(Fargate) QIDO/WADO/STOW"]:::svc
+    hl7["HL7 service<br/>(Fargate, MLLP)"]:::svc
+
+    apil["API Lambdas"]:::compute
+    ingest["Ingest pipeline<br/>(SQS + Lambda)"]:::compute
+    sfn["Step Functions<br/>datastore workflow"]:::compute
+
+    aurora["Aurora MySQL 8.4.8<br/>(RDS Proxy, TLS)"]:::data
+    s3["S3 datastore buckets"]:::data
+    secrets["Secrets Manager"]:::data
+    viewers["Viewers on S3<br/>OHIF · SLIM · VolView"]:::edge
+
+    admin --> cf
+    cf --> apigw
+    cf --> viewers
+    apigw --> cognito
+    apigw --> apil
+    dicom --> dimse
+    hl7src --> hl7
+    viewers --> dweb
+
+    dimse --> ingest
+    dweb --> ingest
+    apil --> aurora
+    ingest --> aurora
+    ingest --> s3
+    dweb --> aurora
+    dweb --> s3
+    hl7 --> aurora
+    apil --> secrets
+    sfn --> aurora

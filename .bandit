@@ -1,0 +1,24 @@
+# Bandit configuration for AHI-DICOM-ARCHIVE (YAML; pass with `bandit -c .bandit`)
+#
+# Rationale:
+#  - exclude_dirs: vendored/build/test-output trees are not our code to scan.
+#  - skips B101 (assert_used): asserts in test suites are correct usage, not a
+#    finding. Its only non-test occurrence is individually reviewed. Production
+#    code does not rely on asserts for control flow.
+#
+# Everything else stays ENABLED. Confirmed false positives (e.g. B608 SQL with
+# trusted identifiers + bound %s values, B105 a JWT token_use literal, B104 a
+# container listener behind an ALB) are annotated inline with `# nosec BXXX`
+# plus a reason at the specific line, so new violations still surface.
+
+exclude_dirs:
+  - '/node_modules/'
+  - '/cdk.out/'
+  - '/venv/'
+  - '/.venv/'
+  - '/dist/'
+  - '/build/'
+  - '/test-results/'
+
+skips:
+  - 'B101'

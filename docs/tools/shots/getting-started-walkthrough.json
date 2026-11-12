@@ -1,0 +1,17 @@
+[
+  {
+    "name": "getting-started/storage-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Storage')"},
+      {"sleep": 4500}
+    ],
+    "callouts": [
+      {"selector": "tr:has-text('cardiology-archive')", "label": "1"},
+      {"selector": "th:has-text('Status')", "label": "2"},
+      {"selector": "th:has-text('Studies')", "label": "3"}
+    ],
+    "clip": "css=#root"
+  }
+]
