@@ -1,0 +1,7 @@
+{
+  "name": "routing-rules-api",
+  "version": "1.0.0",
+  "dependencies": {
+    "mysql2": "3.24.5"
+  }
+}

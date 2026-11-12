@@ -1,0 +1,14 @@
+{
+  "name": "api-authorizer",
+  "version": "1.0.0",
+  "overrides": {
+    "fast-xml-parser": "5.7.3",
+    "jws": "3.2.3"
+  },
+  "dependencies": {
+    "jsonwebtoken": "9.0.2",
+    "jwks-rsa": "3.2.0",
+    "mysql2": "3.24.5",
+    "@aws-sdk/client-secrets-manager": "3.929.0"
+  }
+}

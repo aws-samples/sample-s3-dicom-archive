@@ -1,0 +1,31 @@
+graph TB
+    classDef pub fill:#FFEBEE,stroke:#C62828,color:#B71C1C;
+    classDef egress fill:#FFF8E1,stroke:#F9A825,color:#F57F17;
+    classDef iso fill:#E8F5E9,stroke:#2E7D32,color:#1B5E20;
+
+    internet(["Internet"])
+
+    subgraph vpc["VPC"]
+        subgraph public["Public subnets"]
+            nlb["NLB (DIMSE/HL7 TLS)"]:::pub
+            alb["ALB (internal apps)"]:::pub
+            nat["NAT gateway"]:::pub
+        end
+        subgraph egresssn["Private-with-egress subnets"]
+            fargate["Fargate tasks<br/>DIMSE · DICOMweb · HL7"]:::egress
+            lambdas["Lambdas (VPC-attached)"]:::egress
+        end
+        subgraph isolated["Private-isolated subnets"]
+            proxy["RDS Proxy"]:::iso
+            aurora["Aurora MySQL 8.4.8"]:::iso
+        end
+        vpce["VPC endpoints<br/>S3 (gateway) · ECR (interface)"]
+    end
+
+    internet --> nlb
+    internet --> alb
+    fargate --> proxy --> aurora
+    lambdas --> proxy
+    fargate --> vpce
+    lambdas --> vpce
+    fargate --> nat --> internet

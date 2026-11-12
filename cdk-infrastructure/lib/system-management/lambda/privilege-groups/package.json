@@ -1,0 +1,7 @@
+{
+  "name": "privilege-groups-api",
+  "version": "1.0.0",
+  "description": "Privilege Groups CRUD API",
+  "main": "index.js",
+  "dependencies": {}
+}

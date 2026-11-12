@@ -1,0 +1,9 @@
+{
+  "name": "certificate-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "node-forge": "1.4.0",
+    "mysql2": "3.24.5"
+  }
+}

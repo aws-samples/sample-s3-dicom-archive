@@ -1,0 +1,79 @@
+[
+  {
+    "name": "virtual-folders/folder-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Virtual Folders'), button:has-text('Virtual Folders')"},
+      {"sleep": 1200},
+      {"click": "a:has-text('Folders')"},
+      {"sleep": 4500}
+    ],
+    "callouts": [
+      {"selector": "text=Lung CT research cohort", "label": "1"},
+      {"selector": "button:has-text('Create')", "label": "2"},
+      {"selector": "button:has-text('Rules')", "label": "3"},
+      {"selector": "button:has-text('Re-sync')", "label": "4"}
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "virtual-folders/create-dialog",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Virtual Folders'), button:has-text('Virtual Folders')"},
+      {"sleep": 1200},
+      {"click": "a:has-text('Folders')"},
+      {"sleep": 3500},
+      {"click": "button:has-text('Create')"},
+      {"sleep": 2500}
+    ],
+    "callouts": [
+      {"selector": "input[placeholder*='Research Studies']", "label": "1"},
+      {"selector": "text=Write Mode", "label": "2"},
+      {"selector": "text=De-identification Profile", "label": "3"}
+    ],
+    "clip": "css=[role='dialog']"
+  },
+  {
+    "name": "virtual-folders/profile-editor",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Virtual Folders'), button:has-text('Virtual Folders')"},
+      {"sleep": 1200},
+      {"click": "a:has-text('De-identification Profiles')"},
+      {"sleep": 4500},
+      {"click": "tr:has-text('Research de-identification') input[type='radio']"},
+      {"sleep": 1000},
+      {"click": "button:has-text('Edit')"},
+      {"sleep": 2500}
+    ],
+    "callouts": [
+      {"selector": "text=Privacy Options", "label": "1"},
+      {"selector": "text=Presets:", "label": "2"},
+      {"selector": "th:has-text('Action')", "label": "3"}
+    ],
+    "clip": "css=[role='dialog']"
+  },
+  {
+    "name": "virtual-folders/rules-editor",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Virtual Folders'), button:has-text('Virtual Folders')"},
+      {"sleep": 1200},
+      {"click": "a:has-text('Assignment Rules')"},
+      {"sleep": 4500},
+      {"click": "button:has-text('Edit')"},
+      {"sleep": 2500}
+    ],
+    "callouts": [
+      {"selector": "text=How this rule is materialized", "label": "1"},
+      {"selector": "text=Inclusion Conditions", "label": "2"},
+      {"selector": "text=Exclusion Conditions", "label": "3"}
+    ],
+    "clip": "css=[role='dialog']"
+  }
+]

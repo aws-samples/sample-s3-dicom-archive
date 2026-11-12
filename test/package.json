@@ -1,0 +1,16 @@
+{
+  "name": "api-privilege-tests",
+  "version": "1.0.0",
+  "description": "API privilege testing suite for the DICOM Archive",
+  "scripts": {
+    "setup": "node test/setup-test-users.js",
+    "auth": "node test/authenticate-test-users.js",
+    "test": "node test/api-privilege-test-suite.js",
+    "test:all": "bash test/run-all-tests.sh"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "3.1146.0",
+    "@aws-sdk/client-rds-data": "3.1146.0",
+    "uuid": "9.0.1"
+  }
+}

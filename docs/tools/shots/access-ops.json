@@ -1,0 +1,393 @@
+[
+  {
+    "name": "users-and-access/users-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Users')"
+      },
+      {
+        "sleep": 4000
+      },
+      {
+        "wait": "text=Create User"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Create User')",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Actions')",
+        "label": "2"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "users-and-access/user-create",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Users')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "button:has-text('Create User')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "wait": "text=Privilege Group"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "input[placeholder='user@example.com']",
+        "label": "1"
+      },
+      {
+        "selector": "input[placeholder='Enter username']",
+        "label": "2"
+      },
+      {
+        "selector": "text=Auto-generate password and send via email",
+        "label": "3"
+      },
+      {
+        "selector": "text=Privilege Group",
+        "label": "4"
+      }
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "users-and-access/user-actions",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Users')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "tr:has-text('jane.doe') input[type=radio]"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "button:has-text('Actions')"
+      },
+      {
+        "sleep": 1000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Reset Password",
+        "label": "1"
+      },
+      {
+        "selector": "span:has-text('Delete')",
+        "label": "2"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "users-and-access/groups-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Privilege Groups')"
+      },
+      {
+        "sleep": 4000
+      },
+      {
+        "wait": "text=Create Privilege Group"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Create Privilege Group')",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('View Details')",
+        "label": "2"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "users-and-access/group-create",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Privilege Groups')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "button:has-text('Create Privilege Group')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "wait": "text=User Mode"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "input[placeholder='Enter group name']",
+        "label": "1"
+      },
+      {
+        "selector": "[role=dialog] >> text='User Mode'",
+        "label": "2"
+      },
+      {
+        "selector": "[role=dialog] >> text='Datastore Data'",
+        "label": "3"
+      }
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "users-and-access/group-details",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Privilege Groups')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "tr:has-text('Radiologist read-only') input[type=radio]"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "button:has-text('View Details')"
+      },
+      {
+        "sleep": 2500
+      },
+      {
+        "wait": "text=Datastore Privileges"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Datastore Privileges",
+        "label": "1"
+      },
+      {
+        "selector": "text=Management Privileges",
+        "label": "2"
+      }
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "monitoring/queues",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Queues Monitor')"
+      },
+      {
+        "sleep": 5000
+      },
+      {
+        "wait": "text=audit-queue"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "h2:has-text('Overview')",
+        "label": "1"
+      },
+      {
+        "selector": "[role=group][aria-label='Queue type']",
+        "label": "2"
+      },
+      {
+        "selector": "th:has-text('Status')",
+        "label": "3"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "audit-trail/overview",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Audit Trail')"
+      },
+      {
+        "sleep": 5000
+      },
+      {
+        "wait": "text=Audit Entries"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Filters",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Denials only')",
+        "label": "2"
+      },
+      {
+        "selector": "text=Audit Entries",
+        "label": "3"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "audit-trail/filters",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Audit Trail')"
+      },
+      {
+        "sleep": 5000
+      },
+      {
+        "wait": "text=Quick views:"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Select a user",
+        "label": "1"
+      },
+      {
+        "selector": "text=All actions",
+        "label": "2"
+      },
+      {
+        "selector": "text=All datastores",
+        "label": "3"
+      },
+      {
+        "selector": "text=Quick views:",
+        "label": "4"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "audit-trail/entry-details",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Audit Trail')"
+      },
+      {
+        "sleep": 5000
+      },
+      {
+        "click": "button:has-text('View Details')"
+      },
+      {
+        "sleep": 2000
+      },
+      {
+        "wait": "text=Description"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Resource Type",
+        "label": "1"
+      },
+      {
+        "selector": "text=IP Address",
+        "label": "2"
+      }
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "monitoring/aws-resources",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('AWS Resources')"
+      },
+      {
+        "sleep": 5000
+      },
+      {
+        "wait": "text=AWS resources dynamically created"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Group by Construct')",
+        "label": "1"
+      },
+      {
+        "selector": "input[placeholder='Search resources...']",
+        "label": "2"
+      }
+    ],
+    "clip": "css=main"
+  },
+  {
+    "name": "dicomweb-api/auth-token",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Auth Token')"
+      },
+      {
+        "sleep": 4000
+      },
+      {
+        "wait": "text=Access Token"
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "text=Access Token",
+        "label": "1"
+      }
+    ],
+    "mask": [
+      "xpath=//h2[contains(.,'Access Token')]/ancestor::*[contains(@class,'container') or self::section][1]//div[contains(@style,'monospace')]",
+      "xpath=//h2[contains(.,'ID Token')]/ancestor::*[1]//div[contains(@style,'monospace')]"
+    ],
+    "clip": "css=main"
+  }
+]

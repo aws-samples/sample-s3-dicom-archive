@@ -1,0 +1,97 @@
+/*
+ * Styles for the hand-built DICOM studies table (study -> series -> instance
+ * expansion, which the kit Table does not express).
+ *
+ * Every colour comes from the UI kit's theme tokens (src/ui/styles.css), so one
+ * set of rules serves light and dark mode with no per-theme overrides.
+ */
+
+.cloudscape-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13.5px;
+  line-height: 20px;
+  color: var(--color-card-foreground);
+  background-color: var(--color-card);
+}
+
+/* Header */
+.cloudscape-table-header th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 12.5px;
+  line-height: 16px;
+  color: var(--color-muted-foreground);
+  background-color: var(--color-muted);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Body rows */
+.cloudscape-table-row > td,
+.cloudscape-table-series-row > td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+  color: var(--color-card-foreground);
+  background-color: var(--color-card);
+  transition: background-color 0.12s ease;
+}
+.cloudscape-table tbody tr:last-child > td { border-bottom: none; }
+
+.cloudscape-table-row:hover > td {
+  background-color: color-mix(in oklch, var(--color-muted) 75%, var(--color-card));
+}
+
+/* Nested series / instance rows: shaded, with an accent bar on the first cell */
+.cloudscape-table-series-row > td,
+.cloudscape-table-series-cell {
+  background-color: color-mix(in oklch, var(--color-muted) 55%, var(--color-card));
+  color: var(--color-muted-foreground);
+  font-size: 12.5px;
+}
+.cloudscape-table-series-row > td:first-child { box-shadow: inset 3px 0 0 var(--color-primary); }
+.cloudscape-table-series-row:hover > td { background-color: var(--color-muted); }
+
+.cloudscape-table-cell-nowrap { white-space: nowrap; }
+.cloudscape-table-cell-ellipsis {
+  max-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cloudscape-table-cell-center { text-align: center; }
+.cloudscape-table-cell-small { font-size: 12.5px; }
+
+/* Empty / loading states */
+.cloudscape-table-empty,
+.cloudscape-table-loading {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--color-muted-foreground);
+  background-color: var(--color-card);
+}
+
+.cloudscape-table-expand-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted-foreground);
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+.cloudscape-table-expand-button:hover {
+  color: var(--color-foreground);
+  background-color: var(--color-secondary);
+}
+
+.cloudscape-table-checkbox { display: inline-flex; align-items: center; }
+.cloudscape-table input[type='checkbox'] { accent-color: var(--color-primary); }

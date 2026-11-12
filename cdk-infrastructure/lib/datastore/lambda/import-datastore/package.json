@@ -1,0 +1,6 @@
+{
+  "name": "import-datastore",
+  "version": "1.0.0",
+  "description": "Import an existing S3 bucket as a datastore",
+  "main": "index.js"
+}

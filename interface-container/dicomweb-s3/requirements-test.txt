@@ -1,0 +1,46 @@
+# Test-only dependencies. NOT installed into the container image: the Dockerfile
+# copies requirements.txt by name, so nothing here can reach production.
+#
+# Install this *and* requirements.txt, and build the venv WITHOUT
+# --system-site-packages:
+#
+#   cd interface-container/dicomweb-s3
+#   python3 -m venv .venv                       # no --system-site-packages
+#   .venv/bin/pip install -r requirements.txt -r requirements-test.txt
+#   .venv/bin/python -m pytest tests/ -q
+#
+# The flag matters. A venv with --system-site-packages lets a Homebrew pydicom 3
+# shadow the pinned pydicom 2.4.x, and the suite then exercises an API the
+# container does not ship — which is how a pydicom-3-only keyword in
+# tests/conftest.py sat behind a green run.
+#
+# Use Python 3.11, matching the Dockerfile. Not just for parity: highdicom pulls
+# pillow-jpls, whose wheels stop at cp312, so on a newer interpreter pip falls back
+# to a source build that needs cmake + conan.
+#
+# On 3.11 the whole set installs from wheels. Verified end to end on this machine:
+#
+#   uv python install 3.11
+#   uv venv --python 3.11 .venv                 # or python3.11 -m venv .venv
+#   .venv/bin/pip install -r requirements.txt -r requirements-test.txt \
+#       --timeout 120 --retries 10
+#
+# -> highdicom 0.22.0 with the cp311 pillow-jpls 1.3.2 wheel, exit 0.
+#
+# The --timeout/--retries are there because files.pythonhosted.org throws
+# ReadTimeoutError on large wheels from some networks. That is what an earlier
+# "the pinned highdicom cannot be installed" claim actually was: a transient
+# download failure, not a resolver conflict. There is no version conflict.
+#
+# So a run where conftest substitutes its highdicom stub is a broken environment
+# to fix, not an expected mode: it means the real package is missing (wrong
+# interpreter, or an install that timed out), and the frame-reading paths that go
+# through highdicom.io.ImageFileReader are then not being tested at all.
+#
+# tests/conftest.py stubs pymysql and boto3 unconditionally (a unit run must
+# reach neither MySQL nor AWS) and stubs the remaining infrastructure-only
+# imports only when absent. Flask, flask-cors and cachetools are deliberately
+# NOT stubbed — the suite drives the real app through Flask's test_client and
+# asserts on the real TTLCache eviction behaviour, so a stub would test the stub.
+# They come from requirements.txt, which is why both files are required.
+pytest>=8,<9

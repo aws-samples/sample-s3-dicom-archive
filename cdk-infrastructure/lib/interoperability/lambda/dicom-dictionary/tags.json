@@ -1,0 +1,28 @@
+{
+  "tags": [
+    {"tag": "0008,0005", "name": "SpecificCharacterSet", "vr": "CS", "description": "Character Set"},
+    {"tag": "0008,0020", "name": "StudyDate", "vr": "DA", "description": "Study Date"},
+    {"tag": "0008,0030", "name": "StudyTime", "vr": "TM", "description": "Study Time"},
+    {"tag": "0008,0050", "name": "AccessionNumber", "vr": "SH", "description": "Accession Number"},
+    {"tag": "0008,0060", "name": "Modality", "vr": "CS", "description": "Modality"},
+    {"tag": "0008,0070", "name": "Manufacturer", "vr": "LO", "description": "Manufacturer"},
+    {"tag": "0008,0080", "name": "InstitutionName", "vr": "LO", "description": "Institution Name"},
+    {"tag": "0008,0090", "name": "ReferringPhysicianName", "vr": "PN", "description": "Referring Physician Name"},
+    {"tag": "0008,1010", "name": "StationName", "vr": "SH", "description": "Station Name"},
+    {"tag": "0008,1030", "name": "StudyDescription", "vr": "LO", "description": "Study Description"},
+    {"tag": "0008,103E", "name": "SeriesDescription", "vr": "LO", "description": "Series Description"},
+    {"tag": "0008,1090", "name": "ManufacturerModelName", "vr": "LO", "description": "Manufacturer Model Name"},
+    {"tag": "0010,0010", "name": "PatientName", "vr": "PN", "description": "Patient Name"},
+    {"tag": "0010,0020", "name": "PatientID", "vr": "LO", "description": "Patient ID"},
+    {"tag": "0010,0030", "name": "PatientBirthDate", "vr": "DA", "description": "Patient Birth Date"},
+    {"tag": "0010,0040", "name": "PatientSex", "vr": "CS", "description": "Patient Sex"},
+    {"tag": "0018,0015", "name": "BodyPartExamined", "vr": "CS", "description": "Body Part Examined"},
+    {"tag": "0018,1030", "name": "ProtocolName", "vr": "LO", "description": "Protocol Name"},
+    {"tag": "0020,000D", "name": "StudyInstanceUID", "vr": "UI", "description": "Study Instance UID"},
+    {"tag": "0020,000E", "name": "SeriesInstanceUID", "vr": "UI", "description": "Series Instance UID"},
+    {"tag": "0020,0010", "name": "StudyID", "vr": "SH", "description": "Study ID"},
+    {"tag": "0020,0011", "name": "SeriesNumber", "vr": "IS", "description": "Series Number"},
+    {"tag": "0020,0013", "name": "InstanceNumber", "vr": "IS", "description": "Instance Number"},
+    {"tag": "0032,1060", "name": "RequestedProcedureDescription", "vr": "LO", "description": "Requested Procedure Description"}
+  ]
+}

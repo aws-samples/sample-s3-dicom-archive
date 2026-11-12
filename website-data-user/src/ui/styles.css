@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+/*
+ * website design tokens. One set of semantic colors (shadcn naming) in OKLCH,
+ * switched by the `dark` class on <html> (global-styles applyMode toggles it).
+ * Every component in src/ui reads these through Tailwind's theme variables, so
+ * no component carries a literal color.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-border: var(--sidebar-border);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.985 0.002 247);
+  --foreground: oklch(0.21 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.02 260);
+  --primary: oklch(0.52 0.19 262);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.96 0.006 255);
+  --secondary-foreground: oklch(0.25 0.02 260);
+  --muted: oklch(0.965 0.005 255);
+  --muted-foreground: oklch(0.46 0.02 258);
+  --accent: oklch(0.95 0.02 262);
+  --accent-foreground: oklch(0.3 0.08 262);
+  --destructive: oklch(0.52 0.2 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.5 0.14 150);
+  --warning: oklch(0.53 0.14 60);
+  --info: oklch(0.5 0.15 245);
+  --border: oklch(0.915 0.008 255);
+  --input: oklch(0.88 0.01 255);
+  --ring: oklch(0.6 0.17 262);
+  --sidebar: oklch(0.975 0.004 255);
+  --sidebar-foreground: oklch(0.3 0.02 260);
+  --sidebar-accent: oklch(0.93 0.025 262);
+  --sidebar-border: oklch(0.92 0.008 255);
+}
+
+.dark {
+  --background: oklch(0.225 0.014 262);
+  --foreground: oklch(0.94 0.006 255);
+  --card: oklch(0.26 0.015 262);
+  --card-foreground: oklch(0.94 0.006 255);
+  --popover: oklch(0.28 0.016 262);
+  --popover-foreground: oklch(0.94 0.006 255);
+  --primary: oklch(0.7 0.15 262);
+  --primary-foreground: oklch(0.15 0.03 262);
+  --secondary: oklch(0.315 0.017 262);
+  --secondary-foreground: oklch(0.92 0.006 255);
+  --muted: oklch(0.295 0.015 262);
+  --muted-foreground: oklch(0.75 0.015 258);
+  --accent: oklch(0.34 0.04 262);
+  --accent-foreground: oklch(0.92 0.04 262);
+  --destructive: oklch(0.66 0.19 25);
+  --destructive-foreground: oklch(0.16 0.02 25);
+  --success: oklch(0.72 0.15 150);
+  --warning: oklch(0.78 0.14 75);
+  --info: oklch(0.72 0.13 245);
+  --border: oklch(0.345 0.016 262);
+  --input: oklch(0.4 0.017 262);
+  --ring: oklch(0.68 0.16 262);
+  --sidebar: oklch(0.245 0.014 262);
+  --sidebar-foreground: oklch(0.86 0.01 255);
+  --sidebar-accent: oklch(0.33 0.03 262);
+  --sidebar-border: oklch(0.32 0.015 262);
+  color-scheme: dark;
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
+  ::selection { background: color-mix(in oklch, var(--color-primary) 25%, transparent); }
+  code, pre { font-family: var(--font-mono); }
+}
+
+@layer components {
+  .ui-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+  .ui-scroll::-webkit-scrollbar-thumb { background: color-mix(in oklch, var(--color-muted-foreground) 30%, transparent); border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+  /* Pages written for Cloudscape still use `awsui-key-label` in a few places. */
+  /* Pickers and inputs inside a horizontal SpaceBetween keep an intrinsic width
+     (as in Cloudscape) instead of filling the row and wrapping their siblings. */
+  [data-hsb] > button[aria-haspopup="listbox"], [data-hsb] > div > button[aria-haspopup="listbox"] { width: auto; min-width: 12rem; }
+  [data-hsb] > div:has(> input) { min-width: 12rem; }
+  .awsui-key-label { font-size: 12px; font-weight: 500; color: var(--color-muted-foreground); text-transform: none; }
+}
+
+@keyframes ui-fade-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes ui-zoom-in { from { opacity: 0; transform: translate(-50%, -48%) scale(.97) } to { opacity: 1; transform: translate(-50%, -50%) scale(1) } }
+@keyframes ui-slide-down { from { opacity: 0; transform: translateY(-4px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* Thin indeterminate bar shown while a table/cards refresh in place. */
+.ui-refresh-bar { position: relative; height: 2px; overflow: hidden; background: color-mix(in oklch, var(--color-primary) 18%, transparent); }
+.ui-refresh-bar::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 35%; background: var(--color-primary); animation: ui-refresh 1.1s ease-in-out infinite; }
+@keyframes ui-refresh { from { transform: translateX(-100%); } to { transform: translateX(300%); } }
+@media (prefers-reduced-motion: reduce) { .ui-refresh-bar::after { animation: none; width: 100%; opacity: .6; } }

@@ -1,0 +1,90 @@
+[
+  {
+    "name": "storage/storage-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Storage')"},
+      {"sleep": 4000}
+    ],
+    "callouts": [
+      {"selector": "button:has-text('Create Storage')", "label": "1"},
+      {"selector": "button:has-text('Import S3 bucket')", "label": "2"},
+      {"selector": "input[placeholder='Find storage']", "label": "3"}
+    ],
+    "clip": "css=#root"
+  },
+  {
+    "name": "storage/create-modal",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Storage')"},
+      {"sleep": 3000},
+      {"click": "button:has-text('Create Storage')"},
+      {"sleep": 1200},
+      {"fill": "input[placeholder='Enter storage name']", "value": "cardiology-archive"}
+    ],
+    "callouts": [
+      {"selector": "input[placeholder='Enter storage name']", "label": "1"},
+      {"selector": "textarea", "label": "2"},
+      {"selector": "text=Create read-only and store privilege groups", "label": "3"}
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "storage/import-modal",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Storage')"},
+      {"sleep": 3000},
+      {"click": "button:has-text('Import S3 bucket')"},
+      {"sleep": 1500}
+    ],
+    "callouts": [
+      {"selector": "text=This account", "label": "1"},
+      {"selector": "text=Another account", "label": "2"},
+      {"selector": "text=Read-only (recommended)", "label": "3"},
+      {"selector": "button:has-text('Get bucket policy')", "label": "4"}
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "storage/details-modal",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Storage')"},
+      {"sleep": 3500},
+      {"click": "tr:has-text('cardiology-archive') label"},
+      {"sleep": 600},
+      {"click": "button:has-text('Details')"},
+      {"sleep": 1500}
+    ],
+    "callouts": [
+      {"selector": "text=Studies", "label": "1"},
+      {"selector": "text=S3 Bucket", "label": "2"},
+      {"selector": "text=Storage Type", "label": "3"}
+    ],
+    "clip": "css=[role=dialog]"
+  },
+  {
+    "name": "storage/delete-modal",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {"click": "a:has-text('Storage')"},
+      {"sleep": 3500},
+      {"click": "tr:has-text('cardiology-archive') label"},
+      {"sleep": 600},
+      {"click": "button:has-text('Delete')"},
+      {"sleep": 1200}
+    ],
+    "callouts": [
+      {"selector": "text=Only deregister the storage location", "label": "1"},
+      {"selector": "text=Delete the storage location and all its content", "label": "2"}
+    ],
+    "clip": "css=[role=dialog]"
+  }
+]

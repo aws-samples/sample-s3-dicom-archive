@@ -1,0 +1,6 @@
+# vf_deid.py in this dir is a COPY of interface-container/dicomweb-s3/vf_deid.py,
+# refreshed by sync-shared.sh. It is COMMITTED (not ignored) because CDK Docker
+# bundling mounts only this dir as /asset-input and cannot reach the origin file
+# at build time. Re-run ./sync-shared.sh whenever the dicomweb-s3 engine changes,
+# and commit the refreshed copy. The dicomweb-s3 file remains the source of truth.
+__pycache__/

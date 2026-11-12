@@ -1,0 +1,8 @@
+{
+  "name": "cognito-post-auth",
+  "version": "1.0.0",
+  "dependencies": {
+    "mysql2": "3.24.5",
+    "@aws-sdk/client-secrets-manager": "3.929.0"
+  }
+}

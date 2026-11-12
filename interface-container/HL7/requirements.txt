@@ -1,0 +1,3 @@
+hl7apy==1.3.5
+boto3==1.43.25
+sqs-extended-client==0.0.11

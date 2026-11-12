@@ -1,0 +1,9 @@
+{
+  "name": "interface-servers-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-rds-data": "3.929.0",
+    "@aws-sdk/client-secrets-manager": "3.929.0"
+  }
+}

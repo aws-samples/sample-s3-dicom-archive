@@ -1,0 +1,56 @@
+#Global exclusions
+node_modules
+.npm
+cdk.out
+cdk.out.*
+__pycache__
+lambda/layers/shared/nodejs/node_modules/
+website/build/
+website/dist/
+website-data-user/dist/
+website/src/aws-exports.js
+temp/
+cdk-infrastructure/outputs.json
+
+# macOS
+.DS_Store
+
+# Generated UI runtime config
+website/public/config.js
+
+# Generated deployment artifacts (contain account-specific ARNs/IDs - do not publish)
+cdk-infrastructure/cdk-outputs.json
+cdk-infrastructure/cdk.context.json
+outputs.json
+scan-report.json
+test-results/
+
+# Editor / leftover backup files
+*.bak
+*.backup
+*.orig
+*~
+
+# CDK deploy logs
+*.log
+deploy-*.log
+test/test-tokens.json
+test/*-tokens.json
+*.access-token.txt
+
+# Internal design plans (kept locally, not published)
+plans/
+
+# Security-review working files (kept locally, not published)
+SECURITY_REVIEW*.md
+bandit-baseline.json
+
+# Internal task list (kept locally, not published)
+TODOs.md
+
+# Local test deployments (logs, outputs, tokens)
+.deploy-test/
+cdk.context.json
+*.pyc
+.pytest_cache/
+.venv/

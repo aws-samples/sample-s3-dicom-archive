@@ -1,0 +1,126 @@
+/*
+ * Variant B — "Icon + label sidebar" navigation skin (Modern).
+ *
+ * Pure CSS skin over Cloudscape's <SideNavigation>: per-item icon (keyed on the
+ * link href), a rounded active pill, tighter section headers, comfortable
+ * spacing. No markup/logic change — toggled by the `nav-skin-b` body class.
+ *
+ * SELECTOR SCOPE (why it binds in Cloudscape 3.0.1350):
+ *   The old scope `nav[class*="awsui_navigation"] a[class*="awsui_link"]` was
+ *   inert. Verified against node_modules:
+ *     - side-navigation/implementation.js renders its outer element as
+ *       <div class="awsui_root_l0dv0_…">  (a DIV named `root`, NOT a <nav>,
+ *       and it has no `awsui_navigation` class).
+ *     - side-navigation/parts.js renders each item as
+ *       <a href="…" class="awsui_link_l0dv0_…"> and each expandable group
+ *       header as the same <a class="awsui_link" href>.
+ *   So we anchor on the SideNavigation ROOT `[class*="awsui_root"]` that
+ *   contains `a[class*="awsui_link"]`. This is AppLayout-variant-independent
+ *   (works for both visual-refresh and toolbar layouts) and matches the real
+ *   DOM. Icons key off the real `<a href="/…">` elements (createElement("a")
+ *   + href confirmed).
+ *
+ * Icons are URL-ENCODED inline-SVG data-URIs painted via `mask` with
+ * currentColor, so they inherit the link colour incl. hover/active/dark mode.
+ */
+
+/* Shorthand: the SideNavigation subtree, scoped to the Modern skin. */
+
+/* ---- turn each nav link into an icon+label flex row ---- */
+body.nav-skin-b [class*="awsui_root"] a[class*="awsui_link"] {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 12px;
+  margin: 2px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: background .13s ease, color .13s ease;
+}
+body.nav-skin-b [class*="awsui_root"] a[class*="awsui_link"]:hover {
+  background: color-mix(in srgb, currentColor 9%, transparent);
+}
+body.nav-skin-b [class*="awsui_root"] a[class*="awsui_link"][class*="awsui_link-active"],
+body.nav-skin-b [class*="awsui_root"] a[class*="awsui_link"][aria-current="page"] {
+  background: color-mix(in srgb, var(--nav-accent, #539fe5) 22%, transparent) !important;
+  color: var(--nav-active-ink, #e6edf5) !important;
+  border-radius: 10px;
+  font-weight: 600;
+}
+/* expandable-link-group parent row when it holds the active child */
+body.nav-skin-b [class*="awsui_root"] [class*="awsui_expandable-link-group--active"] > * a[class*="awsui_link"] {
+  font-weight: 600;
+}
+
+/* section headers: quieter, uppercase, tracked */
+body.nav-skin-b [class*="awsui_root"] [class*="awsui_section"] [class*="awsui_header"],
+body.nav-skin-b [class*="awsui_root"] [class*="awsui_section-group-title"] {
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  font-size: 10.5px;
+  opacity: .65;
+  padding-top: 14px;
+}
+
+/* ---- icon element: a masked ::before that paints the per-href --nav-ic ---- */
+body.nav-skin-b [class*="awsui_root"] a[href]::before {
+  content: "";
+  width: 18px; height: 18px; flex: 0 0 18px;
+  background-color: currentColor;
+  opacity: .9;
+  -webkit-mask: var(--nav-ic) center / 18px 18px no-repeat;
+  mask: var(--nav-ic) center / 18px 18px no-repeat;
+}
+/* fallback dot for any unmapped href */
+body.nav-skin-b [class*="awsui_root"] a[href] {
+  --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.8%22%3E%3Ccircle%20cx=%2212%22%20cy=%2212%22%20r=%223%22/%3E%3C/svg%3E");
+}
+
+/* ---- icon injection (URL-encoded data-URIs; mask renders reliably) ---- */
+body.nav-skin-b [class*="awsui_root"] a[href="/dashboard"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M3%2013h8V3H3zM13%2021h8V3h-8zM3%2021h8v-6H3z%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/dicom-studies"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Crect%20x=%223%22%20y=%223%22%20width=%2218%22%20height=%2218%22%20rx=%222%22/%3E%3Cpath%20d=%22M3%209h18M9%2021V9%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/imports"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M12%203v12m0%200l-4-4m4%204l4-4M4%2021h16%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/non-dicom-import"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M12%203v12m0%200l-4-4m4%204l4-4M4%2021h16%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/virtual-folders"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M3%207a2%202%200%200%201%202-2h4l2%202h8a2%202%200%200%201%202%202v8a2%202%200%200%201-2%202H5a2%202%200%200%201-2-2z%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/analytics-projects"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M4%2020V10M10%2020V4M16%2020v-7M22%2020H2%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/processing-jobs"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Ccircle%20cx=%2212%22%20cy=%2212%22%20r=%228%22/%3E%3Cpath%20d=%22M12%208v4l3%202%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/datastores"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cellipse%20cx=%2212%22%20cy=%225%22%20rx=%228%22%20ry=%223%22/%3E%3Cpath%20d=%22M4%205v14c0%201.7%203.6%203%208%203s8-1.3%208-3V5%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/locations"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M12%2021s7-6%207-11a7%207%200%201%200-14%200c0%205%207%2011%207%2011z%22/%3E%3Ccircle%20cx=%2212%22%20cy=%2210%22%20r=%222.5%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/dicom-entities"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Crect%20x=%224%22%20y=%224%22%20width=%2216%22%20height=%2216%22%20rx=%222%22/%3E%3Cpath%20d=%22M9%209h2v6H9zm5%200h1a2%202%200%200%201%200%206h-1z%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/users"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Ccircle%20cx=%229%22%20cy=%228%22%20r=%223.2%22/%3E%3Cpath%20d=%22M3%2020a6%206%200%200%201%2012%200M16%206a3%203%200%200%201%200%206M21%2020a5.5%205.5%200%200%200-4-5.3%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/groups"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M12%203l7%203v6c0%205-3.5%207.7-7%209-3.5-1.3-7-4-7-9V6z%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/audit"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M9%203h6l4%204v14H5V3z%22/%3E%3Cpath%20d=%22M9%2012h6M9%2016h6%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/interface-servers"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Crect%20x=%223%22%20y=%224%22%20width=%2218%22%20height=%2212%22%20rx=%222%22/%3E%3Cpath%20d=%22M8%2020h8M12%2016v4%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/system-monitor"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Crect%20x=%223%22%20y=%224%22%20width=%2218%22%20height=%2212%22%20rx=%222%22/%3E%3Cpath%20d=%22M8%2020h8M12%2016v4%22/%3E%3C/svg%3E"); }
+body.nav-skin-b [class*="awsui_root"] a[href="/aws-resources"] { --nav-ic: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22black%22%20stroke-width=%221.7%22%3E%3Cpath%20d=%22M3%2015c4%203%2014%203%2018%200M5%209c3%202%2011%202%2014%200%22/%3E%3Ccircle%20cx=%2212%22%20cy=%227%22%20r=%223%22/%3E%3C/svg%3E"); }
+
+/* accent pill colour + active ink for the Modern (dark) skin */
+body.nav-skin-b { --nav-accent: #539fe5; --nav-active-ink: #e6edf5; }
+
+/* ---- dark-tuned sidebar surface (Modern skin) ----
+ * The applyTheme dark tokens paint containers; the SideNavigation panel reads
+ * its own tokens, so nudge its backdrop + rail to match the dark identity. */
+body.nav-skin-b [class*="awsui_navigation"],
+body.nav-skin-b [class*="awsui_root"][class*="awsui_"] {
+  background: transparent;
+}
+
+/* ---- collapsed icon rail (Modern skin + nav-collapsed) ---- */
+body.nav-skin-b.nav-collapsed [class*="awsui_navigation-panel"],
+body.nav-skin-b.nav-collapsed [class*="awsui_navigation"] {
+  width: 60px !important; min-width: 60px !important; overflow: hidden;
+  transition: width .22s cubic-bezier(.4,0,.2,1);
+}
+body.nav-skin-b.nav-collapsed [class*="awsui_root"] a[class*="awsui_link"] {
+  gap: 0; justify-content: center; padding: 9px 0; margin: 2px 10px; position: relative; overflow: visible;
+}
+body.nav-skin-b.nav-collapsed [class*="awsui_root"] a[class*="awsui_link"] > span,
+body.nav-skin-b.nav-collapsed [class*="awsui_root"] [class*="awsui_section"] [class*="awsui_header"],
+body.nav-skin-b.nav-collapsed [class*="awsui_root"] [class*="awsui_expand-icon"] {
+  font-size: 0 !important;
+}
+body.nav-skin-b.nav-collapsed [class*="awsui_root"] a[class*="awsui_link"]:hover::after {
+  content: attr(aria-label); position: absolute; left: 46px; top: 50%; transform: translateY(-50%);
+  background: #0f1b2d; color: #e6edf5; border: 1px solid #2c3a4d; font-size: 12px; padding: 5px 9px;
+  border-radius: 7px; white-space: nowrap; z-index: 40; pointer-events: none;
+}

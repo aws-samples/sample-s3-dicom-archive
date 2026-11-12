@@ -1,0 +1,10 @@
+# Dependencies for the vf-assign-consumer Lambda.
+#
+# boto3/botocore are provided by the Lambda runtime and are deliberately NOT
+# pinned here. This consumer evaluates VF assignment rules against the index
+# ROWS (series/study/patient) over PyMySQL — it never parses DICOM, so unlike
+# the ingest lambdas it needs no pydicom/numpy/tifffile.
+#
+# PyMySQL ships a pure-Python (py3-none-any) wheel, so it installs unchanged
+# under cp314 / manylinux_2_28 (same pin as the ingest lambdas).
+PyMySQL==1.1.3

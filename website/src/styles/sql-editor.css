@@ -1,0 +1,261 @@
+.sql-editor {
+  border: 1px solid #d5dbdb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sql-editor-body {
+  display: flex;
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.sql-editor-gutter {
+  padding: 10px 0;
+  min-width: 40px;
+  text-align: right;
+  background: #f2f3f3;
+  color: #687078;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 20px;
+  user-select: none;
+  border-right: 1px solid #d5dbdb;
+  padding-right: 8px;
+  overflow: hidden;
+}
+
+.sql-editor-textarea {
+  flex: 1;
+  background: #ffffff;
+  color: #16191f;
+  border: none;
+  outline: none;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 10px 12px;
+  resize: none;
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.sql-editor-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f2f3f3;
+  border-top: 1px solid #d5dbdb;
+  padding: 2px 12px;
+  color: #687078;
+  font-size: 12px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.sql-editor-sidebar {
+  border-right: 1px solid #d5dbdb;
+  padding: 8px 0;
+  overflow: auto;
+}
+
+.sql-editor-sidebar-toggle {
+  width: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f3f3;
+  border-right: 1px solid #d5dbdb;
+  user-select: none;
+  font-size: 12px;
+  color: #687078;
+}
+
+.sql-editor-sidebar-toggle:hover {
+  background: #e9ebed;
+}
+
+.sql-editor-field-tree {
+  padding: 2px 0 2px 16px;
+  border-left: 1px solid #d5dbdb;
+  margin-left: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sql-editor-chat-bubble-user {
+  background: #0972d3;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 12px 12px 2px 12px;
+  max-width: 480px;
+  white-space: pre-wrap;
+}
+
+.sql-editor-chat-bubble-assistant {
+  background: #f2f3f3;
+  color: #16191f;
+  padding: 8px 12px;
+  border-radius: 12px 12px 12px 2px;
+  max-width: 480px;
+}
+
+.sql-editor-chat-area {
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid #d5dbdb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.sql-editor-chat-generating {
+  background: #f2f3f3;
+  padding: 8px 12px;
+  border-radius: 12px 12px 12px 2px;
+}
+
+/* ── Dark theme overrides ─────────────────────────────────────────────── */
+
+[data-awsui-theme="dark"] .sql-editor {
+  border-color: #414d5c;
+}
+
+[data-awsui-theme="dark"] .sql-editor-gutter {
+  background: #192534;
+  color: #8d99a8;
+  border-right-color: #414d5c;
+}
+
+[data-awsui-theme="dark"] .sql-editor-textarea {
+  background: #0f1b2a;
+  color: #e9ebed;
+}
+
+[data-awsui-theme="dark"] .sql-editor-status {
+  background: #192534;
+  border-top-color: #414d5c;
+  color: #8d99a8;
+}
+
+[data-awsui-theme="dark"] .sql-editor-sidebar {
+  border-right-color: #414d5c;
+}
+
+[data-awsui-theme="dark"] .sql-editor-sidebar-toggle {
+  background: #192534;
+  border-right-color: #414d5c;
+  color: #8d99a8;
+}
+
+[data-awsui-theme="dark"] .sql-editor-sidebar-toggle:hover {
+  background: #2a3441;
+}
+
+[data-awsui-theme="dark"] .sql-editor-field-tree {
+  border-left-color: #414d5c;
+}
+
+[data-awsui-theme="dark"] .sql-editor-chat-bubble-assistant {
+  background: #192534;
+  color: #e9ebed;
+}
+
+[data-awsui-theme="dark"] .sql-editor-chat-area {
+  border-color: #414d5c;
+}
+
+[data-awsui-theme="dark"] .sql-editor-chat-generating {
+  background: #192534;
+}
+
+.sql-editor-chat-area-tall {
+  max-height: calc(100vh - 500px);
+  min-height: 200px;
+}
+
+.sql-editor-chat-markdown {
+  white-space: normal;
+}
+.sql-editor-chat-markdown p { margin: 0 0 8px; }
+.sql-editor-chat-markdown p:last-child { margin-bottom: 0; }
+.sql-editor-chat-markdown code {
+  background: rgba(0,0,0,0.08);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+.sql-editor-chat-markdown pre {
+  background: rgba(0,0,0,0.06);
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 4px 0;
+}
+.sql-editor-chat-markdown ul, .sql-editor-chat-markdown ol {
+  margin: 4px 0;
+  padding-left: 20px;
+}
+
+[data-awsui-theme="dark"] .sql-editor-chat-markdown code {
+  background: rgba(255,255,255,0.1);
+}
+[data-awsui-theme="dark"] .sql-editor-chat-markdown pre {
+  background: rgba(255,255,255,0.06);
+}
+
+/* ── Palette themes (themes/palettes.ts) ─────────────────────────────────
+ * body[data-color-theme] is set only while a palette theme is active; its
+ * --theme-* variables replace the fixed colors above, in light and dark. */
+body[data-color-theme] .sql-editor,
+body[data-color-theme] .sql-editor-sidebar,
+body[data-color-theme] .sql-editor-field-tree,
+body[data-color-theme] .sql-editor-chat-area {
+  border-color: var(--theme-line);
+}
+body[data-color-theme] .sql-editor-textarea {
+  background: var(--theme-panel);
+  color: var(--theme-ink);
+}
+body[data-color-theme] .sql-editor-gutter,
+body[data-color-theme] .sql-editor-status,
+body[data-color-theme] .sql-editor-sidebar-toggle {
+  background: var(--theme-panel-2);
+  color: var(--theme-dim);
+  border-color: var(--theme-line);
+}
+body[data-color-theme] .sql-editor-sidebar-toggle:hover {
+  background: var(--theme-hover);
+}
+body[data-color-theme] .sql-editor-chat-bubble-assistant,
+body[data-color-theme] .sql-editor-chat-generating {
+  background: var(--theme-panel-2);
+  color: var(--theme-ink);
+}
+
+/* Analytics AI "thinking" indicator: pulsing gen-ai icon + animated dots */
+.analytics-thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.analytics-thinking-icon {
+  display: inline-flex;
+  animation: analytics-think-pulse 1.4s ease-in-out infinite;
+}
+@keyframes analytics-think-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.9); }
+  50%      { opacity: 1;    transform: scale(1.12); }
+}
+.analytics-thinking-dots i {
+  font-style: normal;
+  opacity: 0.3;
+  animation: analytics-think-dot 1.4s infinite;
+}
+.analytics-thinking-dots i:nth-child(2) { animation-delay: 0.2s; }
+.analytics-thinking-dots i:nth-child(3) { animation-delay: 0.4s; }
+@keyframes analytics-think-dot {
+  0%, 60%, 100% { opacity: 0.3; }
+  30%           { opacity: 1; }
+}

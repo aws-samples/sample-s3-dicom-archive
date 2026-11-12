@@ -1,0 +1,7 @@
+{
+  "name": "database-schema-init",
+  "version": "1.0.0",
+  "description": "Custom resource to initialize database schema and DB users (mysql2 comes from the shared layer)",
+  "main": "index.js",
+  "dependencies": {}
+}

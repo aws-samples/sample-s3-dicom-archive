@@ -1,0 +1,377 @@
+[
+  {
+    "name": "dicom-networking/locations-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Locations')"
+      },
+      {
+        "sleep": 4000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Create Location')",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Install Instructions')",
+        "label": "2"
+      },
+      {
+        "selector": "table >> nth=0",
+        "label": "3"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/location-create",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Locations')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "button:has-text('Create Location')"
+      },
+      {
+        "sleep": 1500
+      }
+    ],
+    "clip": "css=[role=dialog]",
+    "callouts": [
+      {
+        "selector": "input[value='11112']",
+        "label": "1"
+      },
+      {
+        "selector": "input[value='2762']",
+        "label": "2"
+      },
+      {
+        "selector": "text=Require client certificates",
+        "label": "3"
+      },
+      {
+        "selector": "text=DICOM DIMSE services uses S3 direct",
+        "label": "4"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/location-network-access",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Locations')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "table tbody tr >> nth=0 >> input[type=radio]"
+      },
+      {
+        "sleep": 500
+      },
+      {
+        "click": "button:has-text('Edit')"
+      },
+      {
+        "sleep": 1500
+      },
+      {
+        "click": "text=Service Configuration"
+      },
+      {
+        "sleep": 1200
+      }
+    ],
+    "clip": "css=[role=dialog]",
+    "callouts": [
+      {
+        "selector": "text=Allowed IP Addresses",
+        "label": "1"
+      },
+      {
+        "selector": "input[placeholder*='192.168']",
+        "label": "2"
+      },
+      {
+        "selector": "button:has-text('Add')",
+        "label": "3"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/install-instructions",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Locations')"
+      },
+      {
+        "sleep": 3000
+      },
+      {
+        "click": "button:has-text('Install Instructions')"
+      },
+      {
+        "sleep": 1500
+      }
+    ],
+    "clip": "css=[role=dialog]",
+    "callouts": [
+      {
+        "selector": "pre",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Copy All Commands')",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/interfaces-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "button:has-text('DICOM')"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "a[href='/dicom-interfaces']"
+      },
+      {
+        "sleep": 4500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Create DICOM Interface')",
+        "label": "1"
+      },
+      {
+        "selector": "table >> nth=0",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/interface-create",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "button:has-text('DICOM')"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "a[href='/dicom-interfaces']"
+      },
+      {
+        "sleep": 4500
+      },
+      {
+        "click": "button:has-text('Create DICOM Interface')"
+      },
+      {
+        "sleep": 1800
+      }
+    ],
+    "clip": "css=[role=dialog]",
+    "callouts": [
+      {
+        "selector": "text=A unique name for this DICOM interface",
+        "label": "1"
+      },
+      {
+        "selector": "text=Select the location for this interface",
+        "label": "2"
+      },
+      {
+        "selector": "text=Select which datastores can be accessed for DICOM query and retrieve operations",
+        "label": "3"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/entities-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "button:has-text('DICOM')"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "a[href='/dicom-entities']"
+      },
+      {
+        "sleep": 4500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Create DICOM Entity')",
+        "label": "1"
+      },
+      {
+        "selector": "table >> nth=0",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/entity-create",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "button:has-text('DICOM')"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "a[href='/dicom-entities']"
+      },
+      {
+        "sleep": 4500
+      },
+      {
+        "click": "button:has-text('Create DICOM Entity')"
+      },
+      {
+        "sleep": 1800
+      }
+    ],
+    "clip": "css=[role=dialog]",
+    "callouts": [
+      {
+        "selector": "text=DICOM Application Entity Title (max 16 chars)",
+        "label": "1"
+      },
+      {
+        "selector": "text=Hostname or IP address (required)",
+        "label": "2"
+      },
+      {
+        "selector": "text=Client Certificate (PEM)",
+        "label": "3"
+      },
+      {
+        "selector": "text=Interface Privileges",
+        "label": "4"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/routing-rules-list",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "button:has-text('DICOM')"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "a[href='/routing']"
+      },
+      {
+        "sleep": 4500
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "button:has-text('Create Rule')",
+        "label": "1"
+      },
+      {
+        "selector": "table >> nth=0",
+        "label": "2"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/routing-rule-create",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "button:has-text('DICOM')"
+      },
+      {
+        "sleep": 800
+      },
+      {
+        "click": "a[href='/routing']"
+      },
+      {
+        "sleep": 4500
+      },
+      {
+        "click": "button:has-text('Create Rule')"
+      },
+      {
+        "sleep": 1800
+      }
+    ],
+    "clip": "css=[role=dialog]",
+    "callouts": [
+      {
+        "selector": "[role=dialog] input >> nth=0",
+        "label": "1"
+      },
+      {
+        "selector": "text=Conditions (Optional)",
+        "label": "2"
+      },
+      {
+        "selector": "text=Destination Datastore",
+        "label": "3"
+      }
+    ]
+  },
+  {
+    "name": "dicom-networking/interface-server-monitor",
+    "path": "/admin/",
+    "app": "admin",
+    "steps": [
+      {
+        "click": "a:has-text('Interface Server Monitor')"
+      },
+      {
+        "sleep": 4000
+      }
+    ],
+    "callouts": [
+      {
+        "selector": "table >> nth=0",
+        "label": "1"
+      },
+      {
+        "selector": "button:has-text('Refresh')",
+        "label": "2"
+      }
+    ]
+  }
+]

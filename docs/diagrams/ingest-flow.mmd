@@ -1,0 +1,23 @@
+graph LR
+    classDef src fill:#FFF3E0,stroke:#EF6C00,color:#E65100;
+    classDef proc fill:#F3E5F5,stroke:#8E24AA,color:#4A148C;
+    classDef data fill:#E8F5E9,stroke:#2E7D32,color:#1B5E20;
+
+    cstore["DIMSE C-STORE"]:::src
+    stow["DICOMweb STOW-RS"]:::src
+    upload["Browser upload /<br/>bucket import"]:::src
+
+    s3["S3 datastore bucket"]:::data
+    evt["S3 ObjectCreated →<br/>EventBridge / SQS"]:::proc
+    v3["Ingest<br/>(lambda/ingest)"]:::proc
+    idx["Index rows<br/>patient/study/series/instance"]:::data
+    stats["Stats rollup<br/>study_stats → datastore_statistics"]:::data
+    aurora["Aurora MySQL"]:::data
+
+    cstore --> s3
+    stow --> s3
+    upload --> s3
+    s3 --> evt --> v3
+    v3 --> idx --> aurora
+    v3 --> stats --> aurora
+    v3 -.->|soft-delete on ObjectRemoved| aurora

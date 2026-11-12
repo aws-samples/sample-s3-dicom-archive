@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/admin/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="DICOM Archive - Medical imaging management system"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>DICOM Archive</title>
+    <!-- Absolute /admin/ paths (NOT relative): these classic scripts are copied
+         from public/ and are the ONLY non-module scripts, so Vite's base
+         rewriting does not touch them. A relative src resolves to /config.js
+         when the SPA is served at /admin (no trailing slash) -> 404 -> the
+         runtime config never loads -> Amplify reports "Auth UserPool not
+         configured". An absolute path loads correctly at both /admin and
+         /admin/. -->
+    <script src="/admin/config.js"></script>
+    <script src="/admin/resize-observer-fix.js"></script>
+    
+    <!-- Custom CSS for full width tables -->
+    <style>
+      /* Make containers full width */
+      .awsui-util-container {
+        max-width: none !important;
+        width: 100% !important;
+      }
+      
+      /* Make table containers full width */
+      [data-testid="table-container"],
+      .awsui-table-container {
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+      
+      /* Remove padding from main content areas */
+      .awsui-app-layout-content {
+        padding: 0 !important;
+      }
+      
+      /* Make tabs content full width */
+      .awsui-tabs-content {
+        width: 100% !important;
+        max-width: none !important;
+      }
+      
+      /* Full width for table wrapper */
+      .awsui-table-wrapper {
+        width: 100% !important;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>

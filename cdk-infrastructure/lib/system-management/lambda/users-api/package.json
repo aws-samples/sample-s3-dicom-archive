@@ -1,0 +1,9 @@
+{
+  "name": "users-api",
+  "version": "1.0.0",
+  "description": "Users CRUD API",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "3.929.0"
+  }
+}

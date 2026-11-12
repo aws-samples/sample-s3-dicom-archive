@@ -1,0 +1,9 @@
+{
+  "name": "virtual-folder-profile-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "mysql2": "3.24.5",
+    "uuid": "9.0.1"
+  }
+}

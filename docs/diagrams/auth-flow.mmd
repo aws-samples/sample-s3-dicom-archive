@@ -1,0 +1,20 @@
+sequenceDiagram
+    autonumber
+    participant U as Browser
+    participant C as Cognito
+    participant G as API Gateway
+    participant A as Lambda authorizer
+    participant L as API Lambda
+    participant D as Aurora (RDS Proxy)
+
+    U->>C: Sign in (+ MFA)
+    C-->>U: JWT (id / access token)
+    Note over C: cognito-pre-token enriches claims.<br/>cognito-post-auth records login
+    U->>G: Request + Bearer token
+    G->>A: Authorize
+    A->>D: Resolve datastore_privileges for sub
+    A-->>G: Allow/Deny + scoped context (datastore_id)
+    G->>L: Invoke with authorizer context
+    L->>D: Query scoped to the authorized datastore_id
+    D-->>L: Rows
+    L-->>U: Response

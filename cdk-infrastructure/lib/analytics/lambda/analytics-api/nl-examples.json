@@ -1,0 +1,80 @@
+[
+  {
+    "question": "How many studies are there per modality?",
+    "shape": "rows",
+    "note": "Per modality = the single-valued series.modality, never the multi-valued study.modalitiesinstudy.",
+    "sql": "SELECT se.datastore_id, se.modality, COUNT(DISTINCT se.study_pkey) AS studies FROM series se WHERE se.deleted_at IS NULL GROUP BY se.datastore_id, se.modality ORDER BY studies DESC"
+  },
+  {
+    "question": "What is the total stored size in bytes per modality?",
+    "shape": "rows",
+    "note": "Sizes live on storage_index.size_bytes, reached through instance.content_pkey.",
+    "sql": "SELECT se.datastore_id, se.modality, SUM(si.size_bytes) AS total_bytes FROM series se JOIN instance i ON i.series_pkey = se.series_pkey JOIN storage_index si ON si.content_pkey = i.content_pkey WHERE se.deleted_at IS NULL AND i.deleted_at IS NULL AND si.deleted_at IS NULL GROUP BY se.datastore_id, se.modality ORDER BY total_bytes DESC"
+  },
+  {
+    "question": "What is the total size of all stored objects?",
+    "shape": "one value",
+    "note": "One value: read the number, then state it in a plain reply.",
+    "sql": "SELECT si.datastore_id, SUM(si.size_bytes) AS total_bytes FROM storage_index si WHERE si.deleted_at IS NULL GROUP BY si.datastore_id"
+  },
+  {
+    "question": "List the studies performed in the first half of 2019.",
+    "shape": "rows",
+    "note": "studydate is a DATE: compare it as a date range.",
+    "sql": "SELECT s.datastore_id, s.studyinstanceuid, s.studydate, s.studydescription FROM study s WHERE s.deleted_at IS NULL AND s.studydate BETWEEN '2019-01-01' AND '2019-06-30' ORDER BY s.studydate"
+  },
+  {
+    "question": "Which patients have both a PET series and a CT series?",
+    "shape": "rows",
+    "note": "Both X and Y: GROUP BY the entity, HAVING one CASE WHEN sum per value.",
+    "sql": "SELECT p.datastore_id, p.patientid FROM patient p JOIN study s ON s.patient_pkey = p.patient_pkey JOIN series se ON se.study_pkey = s.study_pkey WHERE p.deleted_at IS NULL AND s.deleted_at IS NULL AND se.deleted_at IS NULL GROUP BY p.datastore_id, p.patient_pkey, p.patientid HAVING SUM(CASE WHEN se.modality = 'PT' THEN 1 ELSE 0 END) > 0 AND SUM(CASE WHEN se.modality = 'CT' THEN 1 ELSE 0 END) > 0"
+  },
+  {
+    "question": "How many patients have both an MR series and a CT series?",
+    "shape": "one value",
+    "note": "Counting 'both X and Y': keep the GROUP BY ... HAVING query and COUNT its rows from outside. HAVING without GROUP BY tests the whole table and counts everyone.",
+    "sql": "SELECT COUNT(*) AS patients FROM (SELECT p.patient_pkey FROM patient p JOIN study s ON s.patient_pkey = p.patient_pkey JOIN series se ON se.study_pkey = s.study_pkey WHERE p.deleted_at IS NULL AND s.deleted_at IS NULL AND se.deleted_at IS NULL GROUP BY p.patient_pkey HAVING SUM(CASE WHEN se.modality = 'MR' THEN 1 ELSE 0 END) > 0 AND SUM(CASE WHEN se.modality = 'CT' THEN 1 ELSE 0 END) > 0) x"
+  },
+  {
+    "question": "Show the 3 studies with the most instances, including ties.",
+    "shape": "rows",
+    "note": "Top N with ties: keep every row whose count reaches the Nth largest count, instead of LIMIT N.",
+    "sql": "SELECT x.datastore_id, x.studyinstanceuid, x.n FROM (SELECT s.datastore_id, s.studyinstanceuid, COUNT(i.instance_pkey) AS n FROM study s JOIN series se ON se.study_pkey = s.study_pkey JOIN instance i ON i.series_pkey = se.series_pkey WHERE s.deleted_at IS NULL AND se.deleted_at IS NULL AND i.deleted_at IS NULL GROUP BY s.datastore_id, s.study_pkey, s.studyinstanceuid) x WHERE x.n >= (SELECT MIN(t.n) FROM (SELECT COUNT(i2.instance_pkey) AS n FROM series se2 JOIN instance i2 ON i2.series_pkey = se2.series_pkey WHERE se2.deleted_at IS NULL AND i2.deleted_at IS NULL GROUP BY se2.study_pkey ORDER BY n DESC LIMIT 3) t) ORDER BY x.n DESC"
+  },
+  {
+    "question": "Which studies contain an MR series?",
+    "shape": "rows",
+    "note": "Multi-valued study.modalitiesinstudy (e.g. CT\\MR\\SR) is never compared with =: test the series with EXISTS.",
+    "sql": "SELECT s.datastore_id, s.studyinstanceuid, s.modalitiesinstudy FROM study s WHERE s.deleted_at IS NULL AND EXISTS (SELECT 1 FROM series se WHERE se.study_pkey = s.study_pkey AND se.deleted_at IS NULL AND se.modality = 'MR')"
+  },
+  {
+    "question": "How many PDF documents are there?",
+    "shape": "one value",
+    "note": "A kind of object = instance.sopclassuid from the glossary (Encapsulated PDF), not the modality or transfer syntax.",
+    "sql": "SELECT i.datastore_id, COUNT(*) AS n FROM instance i WHERE i.deleted_at IS NULL AND i.sopclassuid = '1.2.840.10008.5.1.4.1.1.104.1' GROUP BY i.datastore_id"
+  },
+  {
+    "question": "Which studies have a structured report?",
+    "shape": "rows",
+    "note": "Several SOP classes from the glossary: IN (...) with the exact UIDs.",
+    "sql": "SELECT s.datastore_id, s.studyinstanceuid, COUNT(i.instance_pkey) AS reports FROM study s JOIN series se ON se.study_pkey = s.study_pkey JOIN instance i ON i.series_pkey = se.series_pkey WHERE s.deleted_at IS NULL AND se.deleted_at IS NULL AND i.deleted_at IS NULL AND i.sopclassuid IN ('1.2.840.10008.5.1.4.1.1.88.11', '1.2.840.10008.5.1.4.1.1.88.22', '1.2.840.10008.5.1.4.1.1.88.33', '1.2.840.10008.5.1.4.1.1.88.34', '1.2.840.10008.5.1.4.1.1.88.35') GROUP BY s.datastore_id, s.study_pkey, s.studyinstanceuid"
+  },
+  {
+    "question": "How many series have no series description?",
+    "shape": "one value",
+    "note": "Missing = NULL or empty string.",
+    "sql": "SELECT se.datastore_id, COUNT(*) AS n FROM series se WHERE se.deleted_at IS NULL AND (se.seriesdescription IS NULL OR se.seriesdescription = '') GROUP BY se.datastore_id"
+  },
+  {
+    "question": "List the instances larger than 1024 by 1024 pixels.",
+    "shape": "rows",
+    "note": "rows and columns are reserved words: backticks with a table alias.",
+    "sql": "SELECT i.datastore_id, i.sopinstanceuid, i.`rows`, i.`columns` FROM instance i WHERE i.deleted_at IS NULL AND i.`rows` > 1024 AND i.`columns` > 1024"
+  },
+  {
+    "question": "What is the average number of series per study, per patient sex?",
+    "shape": "rows",
+    "note": "Aggregate in a derived table first, then average the per-entity counts.",
+    "sql": "SELECT x.datastore_id, x.patientsex, ROUND(AVG(x.n), 2) AS avg_series FROM (SELECT p.datastore_id, p.patientsex, s.study_pkey, COUNT(se.series_pkey) AS n FROM patient p JOIN study s ON s.patient_pkey = p.patient_pkey LEFT JOIN series se ON se.study_pkey = s.study_pkey AND se.deleted_at IS NULL WHERE p.deleted_at IS NULL AND s.deleted_at IS NULL GROUP BY p.datastore_id, p.patientsex, s.study_pkey) x GROUP BY x.datastore_id, x.patientsex"
+  }
+]

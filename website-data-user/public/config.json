@@ -1,0 +1,40 @@
+{
+  "apiUrl": "",
+  "region": "us-east-1",
+  "userPoolId": "",
+  "userPoolWebClientId": "",
+  "virtualFolderEnabled": true,
+  "virtualFolderDicomWebUrl": "",
+  "ohifViewerUrl": "",
+  "slimViewerUrl": "",
+  "version": "0.37",
+  "applications": [
+    {
+      "id": "ohif",
+      "name": "OHIF Viewer",
+      "type": "ohif",
+      "url": "{ohifViewerUrl}/viewer/{datastoreId}?StudyInstanceUIDs={StudyUIDs}#token={token}",
+      "icon": "multiscreen"
+    },
+    {
+      "id": "ohif-segmentation",
+      "name": "OHIF Segmentation",
+      "type": "ohif",
+      "url": "{ohifViewerUrl}/segmentation/{datastoreId}?StudyInstanceUIDs={StudyUIDs}#token={token}",
+      "icon": "multiscreen"
+    },
+    {
+      "id": "slim",
+      "name": "SLIM Viewer",
+      "type": "slim",
+      "url": "{slimViewerUrl}/studies/{StudyUIDs}?server={URLEncode({virtualFolderDicomWebUrl}{datastoreId})}#token={token}",
+      "icon": "multiscreen"
+    },
+    {
+      "id": "download",
+      "name": "Download DICOM",
+      "type": "download",
+      "icon": "download"
+    }
+  ]
+}
