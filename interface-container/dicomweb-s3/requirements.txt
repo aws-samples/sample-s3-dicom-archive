@@ -25,7 +25,7 @@ highdicom==0.22.0
 cachetools==5.5.2
 PyJWT[crypto]==2.15.1
 requests==2.34.2
-Pillow==11.3.0
+Pillow==13.0.0
 numpy==2.4.6
 # Pixel decoders for transcoding stored frames to Explicit VR Little Endian.
 # python-gdcm (Apache-2.0) decodes JPEG Lossless (.57/.70), JPEG-LS (.80/.81) and
