@@ -1,4 +1,4 @@
 pydicom==2.4.5
-pillow==12.3.0
+pillow==13.0.0
 numpy==2.4.6
 PyMySQL==1.1.3
